@@ -44,6 +44,9 @@ public class WorldController implements GameController {
             case 'D':
                 this.commandeEnCours = Cmd.DOWN;
                 break;
+            case 'q':
+            case 'Q':
+                System.exit(0);
         }
     }
 
