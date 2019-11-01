@@ -93,4 +93,12 @@ public class DrawingPanel extends JPanel {
 				getWidth(), getHeight(), null);
 	}
 
+
+	@Override
+	public int getWidth() {	return this.width; }
+
+	@Override
+	public int getHeight() {
+		return this.height;
+	}
 }

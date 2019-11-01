@@ -1,6 +1,7 @@
 package engine;
 
 import javax.swing.JFrame;
+import java.awt.*;
 
 
 /**
@@ -26,10 +27,15 @@ public class GraphicalInterface  {
 	public GraphicalInterface(GamePainter gamePainter, GameController gameController){
 		JFrame f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setTitle("Labyrinthe");
 		
 		// attacher le panel contenant l'afficheur du game
 		this.panel=new DrawingPanel(gamePainter);
 		f.setContentPane(this.panel);
+
+		// position de la fenetre
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		f.setLocation((screen.width-panel.getWidth())/2, (screen.height-panel.getHeight())/2);
 		
 		// attacher controller au panel du game
 		this.panel.addKeyListener(gameController);	
