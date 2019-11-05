@@ -28,20 +28,20 @@ public class WorldController implements GameController {
 
         switch (e.getKeyChar()) {
 
-            case 'r':
-            case 'R':
-                this.commandeEnCours = Cmd.RIGHT;
-                break;
-            case 'l':
-            case 'L':
-                this.commandeEnCours = Cmd.LEFT;
-                break;
-            case 'u':
-            case 'U':
-                this.commandeEnCours = Cmd.UP;
-                break;
             case 'd':
             case 'D':
+                this.commandeEnCours = Cmd.RIGHT;
+                break;
+            case 'a':
+            case 'A':
+                this.commandeEnCours = Cmd.LEFT;
+                break;
+            case 'w':
+            case 'W':
+                this.commandeEnCours = Cmd.UP;
+                break;
+            case 's':
+            case 'S':
                 this.commandeEnCours = Cmd.DOWN;
                 break;
             case 'q':

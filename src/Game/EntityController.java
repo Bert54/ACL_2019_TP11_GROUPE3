@@ -1,4 +1,5 @@
-package Game;
+package game;
 
-public class EntityController {
+public interface EntityController {
+    public void onUpdate();
 }

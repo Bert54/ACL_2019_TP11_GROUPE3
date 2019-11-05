@@ -2,8 +2,12 @@ package model;
 
 import engine.GamePainter;
 
+import game.Drawable;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorldPainter implements GamePainter {
 
@@ -14,6 +18,11 @@ public class WorldPainter implements GamePainter {
     protected static final int HEIGHT = 500;
 
     public WorldPainter() {
+        drawables = new ArrayList<Drawable>();
+    }
+
+    public void submit(Drawable drawable) {
+        drawables.add(drawable);
     }
 
     @Override
@@ -33,6 +42,10 @@ public class WorldPainter implements GamePainter {
         crayon.fillRect(350,350,25,25);
         crayon.fillRect(450,350,25,25);
         crayon.fillRect(350,450,25,25);
+
+        for(Drawable drawable : drawables) {
+            drawable.draw(image);
+        }
     }
 
     @Override
@@ -44,4 +57,5 @@ public class WorldPainter implements GamePainter {
     public int getHeight() {
         return HEIGHT;
     }
+    private List<Drawable> drawables;
 }

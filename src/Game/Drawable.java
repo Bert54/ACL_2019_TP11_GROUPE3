@@ -1,4 +1,8 @@
-package Game;
+package game;
 
-public class Drawable {
+import java.awt.*;
+import java.awt.image.BufferedImage;
+    
+public interface Drawable {
+    public void draw(BufferedImage image);
 }
