@@ -46,6 +46,7 @@ public class WorldPainter implements GamePainter {
         for(Drawable drawable : drawables) {
             drawable.draw(image);
         }
+        drawables.clear();
     }
 
     @Override
