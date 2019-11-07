@@ -3,7 +3,7 @@ package game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Hero extends GameEntity implements Drawable {
+public class Hero extends GameEntity {
     public Hero(Vec2 position, Vec2 box) {
         super(position, box);
     }

@@ -1,0 +1,23 @@
+package game;
+
+import model.WorldController;
+
+public class EntityBuilder {
+    public EntityBuilder(WorldController controller) {
+        this.controller = controller;
+    }
+
+    public Hero buildHero() {
+        Hero hero = new Hero(new Vec2(0, 0), new Vec2(30, 30));
+        hero.setController(new HeroController(hero, controller));
+        return hero;
+    }
+
+    public Monster buildMonster() {
+        Monster monster = new Monster(new Vec2(200, 200), new Vec2(30, 30));
+        monster.setController(new MonsterDefaultController(monster));
+        return monster;
+    }
+
+    private WorldController controller;
+}

@@ -5,5 +5,11 @@ public class Vec2 {
         this.x = x;
         this.y = y;
     }
+
+    public Vec2(Vec2 vector) {
+        x = vector.x;
+        y = vector.y;
+    }
+    
     public int x, y;
 }

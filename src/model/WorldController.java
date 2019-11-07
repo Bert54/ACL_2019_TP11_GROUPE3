@@ -5,44 +5,41 @@ import engine.GameController;
 
 import java.awt.event.KeyEvent;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class WorldController implements GameController {
-
-    /**
-     * commande en cours
-     */
-    private Cmd commandeEnCours;
-
     public WorldController() {
-
-        this.commandeEnCours = Cmd.IDLE;
+        commandBuffer = new ArrayList<>();
     }
 
     @Override
-    public Cmd getCommand() {
-
-        return this.commandeEnCours;
+    public List<Cmd> getCommands() {
+        return commandBuffer;
+    }
+    
+    public void clearCommands() {
+        commandBuffer.clear();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         switch (e.getKeyChar()) {
-
             case 'd':
             case 'D':
-                this.commandeEnCours = Cmd.RIGHT;
+                commandBuffer.add(Cmd.RIGHT);
                 break;
             case 'a':
             case 'A':
-                this.commandeEnCours = Cmd.LEFT;
+                commandBuffer.add(Cmd.LEFT);
                 break;
             case 'w':
             case 'W':
-                this.commandeEnCours = Cmd.UP;
+                commandBuffer.add(Cmd.UP);
                 break;
             case 's':
             case 'S':
-                this.commandeEnCours = Cmd.DOWN;
+                commandBuffer.add(Cmd.DOWN);
                 break;
             case 'q':
             case 'Q':
@@ -52,12 +49,11 @@ public class WorldController implements GameController {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
-        this.commandeEnCours = Cmd.IDLE;
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
+
+    private List<Cmd> commandBuffer;
 }
