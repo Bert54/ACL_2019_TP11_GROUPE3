@@ -8,6 +8,7 @@ public abstract class GameEntity implements Drawable {
         this.position = position;
         this.box = box;
         nextPosition = new Vec2(position);
+        this.isHero = false;
     }
 
     public abstract void update();
@@ -22,6 +23,10 @@ public abstract class GameEntity implements Drawable {
 
     public void setController(EntityController controller) {
         this.controller = controller;
+    }
+
+    public EntityController getController() {
+        return controller;
     }
 
     public void move(Vec2 translation) {
@@ -43,6 +48,11 @@ public abstract class GameEntity implements Drawable {
 
     public abstract void draw(BufferedImage image);
 
+    public boolean isHero(){
+        return isHero;
+    }
+
+    protected boolean isHero;
     protected EntityController controller;
     protected Vec2 position;
     protected Vec2 nextPosition;

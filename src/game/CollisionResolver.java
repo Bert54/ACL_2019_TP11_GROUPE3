@@ -3,10 +3,10 @@ package game;
 import java.util.List;
 
 public class CollisionResolver {
-    public CollisionResolver() {
-    }
 
-    public void resolve(List<GameEntity> entities) {
+    public CollisionResolver() {}
+
+    public void resolve(List<GameEntity> entities, List<Tile> tiles) {
         //O(n^2) :<
         for(int i = 0; i < entities.size(); ++i) {
             //bounds
@@ -30,6 +30,27 @@ public class CollisionResolver {
                     collision(entities.get(i), entities.get(j));
                 }
             }
+
+            /*if(entities.get(i).isHero() == true) {
+
+                for (int j = 0; j < tiles.size(); j++) {
+                    Vec2 pos1 = entities.get(i).getPosition();
+                    Vec2 pos2 = tiles.get(j).getPosition();
+
+                    Vec2 box1 = entities.get(i).getBox();
+                    Vec2 box2 = tiles.get(j).getBox();
+
+                    if (pos1.x + box1.x >= pos2.x &&
+                            pos1.x <= pos2.x + box2.x &&
+                            pos1.y + box1.y >= pos2.y &&
+                            pos1.y <= pos2.y + box2.y) {
+
+                        entities.get(i).controller.setStopRight(true);
+                    }else{
+                        entities.get(i).controller.setStopRight(false);
+                    }
+                }
+            }*/
         }
     }
 

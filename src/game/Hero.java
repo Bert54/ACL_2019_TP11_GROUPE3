@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 public class Hero extends GameEntity {
     public Hero(Vec2 position, Vec2 box) {
         super(position, box);
+        this.isHero = true;
     }
 
     public void update() {
