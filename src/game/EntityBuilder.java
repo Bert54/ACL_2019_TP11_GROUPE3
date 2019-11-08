@@ -26,5 +26,6 @@ public class EntityBuilder {
         return monster;
     }
 
+
     private WorldController controller;
 }

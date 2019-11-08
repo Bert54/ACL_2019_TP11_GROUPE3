@@ -36,6 +36,10 @@ public class TileBuilder {
         Edge edge = new Edge(new Vec2(0,HEIGHT-HEIGHT/100), new Vec2(WIDTH,HEIGHT/100));
         return edge;
     }
+    public Goal buildGoal() {
+        Goal goal = new Goal(new Vec2((int)(Math.random()*400),(int)(Math.random()*400) ), new Vec2(30, 30));
+        return goal;
+    }
 
     public ArrayList<Obstacle> buildObstacles(){
 

@@ -25,6 +25,7 @@ public class World implements Game {
         tiles.add(tileBuilder.buildEdgeRight());
         tiles.add(tileBuilder.buildEdgeTop());
         tiles.add(tileBuilder.buildEdgeBottom());
+        tiles.add(tileBuilder.buildGoal());
         for(int i = 0; i < 5; i++){
 
             tiles.add(tileBuilder.buildObstacles().get(i));
