@@ -3,15 +3,10 @@ package game;
 import java.util.List;
 
 public class CollisionResolver {
-
-<<<<<<< HEAD
     public void resolve(List<GameEntity> entities) {
-=======
     public CollisionResolver() {}
 
     public void resolve(List<GameEntity> entities, List<Tile> tiles) {
-        //O(n^2) :<
->>>>>>> 77e1bcca9838ccfc7573ddc670e9902a1c0ed656
         for(int i = 0; i < entities.size(); ++i) {
             //bounds
             /*Vec2 pos = entities.get(i).getPosition();
