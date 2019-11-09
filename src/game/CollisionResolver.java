@@ -4,10 +4,14 @@ import java.util.List;
 
 public class CollisionResolver {
 
+<<<<<<< HEAD
+    public void resolve(List<GameEntity> entities) {
+=======
     public CollisionResolver() {}
 
     public void resolve(List<GameEntity> entities, List<Tile> tiles) {
         //O(n^2) :<
+>>>>>>> 77e1bcca9838ccfc7573ddc670e9902a1c0ed656
         for(int i = 0; i < entities.size(); ++i) {
             //bounds
             /*Vec2 pos = entities.get(i).getPosition();
@@ -16,8 +20,8 @@ public class CollisionResolver {
             }*/
 
             for(int j = i + 1; j < entities.size(); ++j) {
-                Vec2 pos1 = entities.get(i).getPosition();
-                Vec2 pos2 = entities.get(j).getPosition();
+                Vec2 pos1 = entities.get(i).getNextPosition();
+                Vec2 pos2 = entities.get(j).getNextPosition();
 
                 Vec2 box1 = entities.get(i).getBox();
                 Vec2 box2 = entities.get(j).getBox();
