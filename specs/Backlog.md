@@ -1,25 +1,25 @@
 # sprint 1
 
-..*generer un labyrinthe
+* generer un labyrinthe
 
-..*deplacer le hero
+* deplacer le hero
 
-..*gerer les collisions
+* gerer les collisions
 
-..*placer un tresor et des cases a effets
+* placer un tresor et des cases a effets
 
-..*gerer l'affichage des textures
+* gerer l'affichage des textures
 
 
 
 # sprint 2
 
-..*obtenir un deltaTime dans la boucle principale
+* obtenir un deltaTime dans la boucle principale
 
-..*generer le labyrinthe a partir d'un fichier
+* generer le labyrinthe a partir d'un fichier
 
-..*mettre en place un systeme de camera
+* mettre en place un systeme de camera
 
-..*ajouter des effets au hero
+* ajouter des effets au hero
 
-..*ajouter de nouveaux types de monstres
+* ajouter de nouveaux types de monstres
