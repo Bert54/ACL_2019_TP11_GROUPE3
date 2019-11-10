@@ -7,19 +7,13 @@ public abstract class GameEntity implements Drawable {
     public GameEntity(Vec2 position, Vec2 box) {
         this.position = position;
         this.box = box;
+        health = 3;
         nextPosition = new Vec2(position);
-        this.isHero = false;
     }
 
     public abstract void update();
     
     public void applyMovement(CollisionResolver collisionResolver) {
-
-        if (!position.equals(nextPosition)){
-
-            collisionResolver.setCollided(false);
-        }
-
         position = new Vec2(nextPosition);
     }
 
@@ -52,25 +46,18 @@ public abstract class GameEntity implements Drawable {
         return box;
     }
 
+    public void onHit() {
+        cancelMovement();
+        --health;
+    }
+
+    public abstract void collectCoin(Coin c);
+
     public abstract void draw(BufferedImage image);
 
-    public boolean isHero(){
-        return isHero;
-    }
-
-    public void setPv(int pv) {
-        this.pv = pv;
-    }
-
-    public int getPv() {
-        return pv;
-    }
-
-    protected boolean isHero;
     protected EntityController controller;
     protected Vec2 position;
     protected Vec2 nextPosition;
     protected Vec2 box;
-    protected int pv;
-    protected boolean collision;
+    protected int health;
 }

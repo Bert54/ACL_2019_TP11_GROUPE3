@@ -9,11 +9,14 @@ public class Obstacle extends Tile {
         super(position, box);
     }
 
+    public void onEnter(GameEntity e) {
+        e.cancelMovement();
+    }
+
     @Override
     public void draw(BufferedImage image) {
-
         Graphics2D crayon = (Graphics2D) image.getGraphics();
         crayon.setColor(Color.black);
-        crayon.fillRect(position.x,position.y,box.x,box.y);
+        crayon.fillRect(position.x, position.y, box.x, box.y);
     }
 }
