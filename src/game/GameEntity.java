@@ -13,7 +13,13 @@ public abstract class GameEntity implements Drawable {
 
     public abstract void update();
     
-    public void applyMovement() {
+    public void applyMovement(CollisionResolver collisionResolver) {
+
+        if (!position.equals(nextPosition)){
+
+            collisionResolver.setCollided(false);
+        }
+
         position = new Vec2(nextPosition);
     }
 
@@ -52,9 +58,19 @@ public abstract class GameEntity implements Drawable {
         return isHero;
     }
 
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
     protected boolean isHero;
     protected EntityController controller;
     protected Vec2 position;
     protected Vec2 nextPosition;
     protected Vec2 box;
+    protected int pv;
+    protected boolean collision;
 }

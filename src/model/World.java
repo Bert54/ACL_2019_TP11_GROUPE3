@@ -6,46 +6,44 @@ import engine.GameController;
 
 import game.*;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
 public class World implements Game {
     public World(WorldPainter painter, WorldController controller) {
         renderWindow = painter;
-        this.controller = controller; 
-        
-        entities = new ArrayList<GameEntity>();
-        tiles = new ArrayList<Tile>();
-        builder = new EntityBuilder(controller);
-        tileBuilder = new TileBuilder();
-        collisionResolver = new CollisionResolver();
-        entities.add(builder.buildHero());
-        entities.add(builder.buildMonster());
-        tiles.add(tileBuilder.buildEdgeLeft());
-        tiles.add(tileBuilder.buildEdgeRight());
-        tiles.add(tileBuilder.buildEdgeTop());
-        tiles.add(tileBuilder.buildEdgeBottom());
-        tiles.add(tileBuilder.buildGoal());
-        for(int i = 0; i < 5; i++){
+        this.controller = controller;
 
-            tiles.add(tileBuilder.buildObstacles().get(i));
-        }
+        this.labyrintheBuilder = new LabyrintheBuilder(controller);
+        collisionResolver = new CollisionResolver();
     }
 
     @Override
     public void evolve() {
-        for(Tile t : tiles) {
+
+        Iterator<GameEntity> iterator = labyrintheBuilder.getEntities().iterator();
+        while ( iterator.hasNext() ) {
+            GameEntity gameEntity = iterator.next();
+            if (!gameEntity.isHero() && gameEntity.getPv() <= 0) {
+                // On supprime l'élément courant de la liste d'entites
+                iterator.remove();
+            }
+        }
+
+        for(Tile t : labyrintheBuilder.getTiles()) {
             renderWindow.submit(t);
         }
 
-        for(GameEntity e : entities) {
+        for(GameEntity e : labyrintheBuilder.getEntities()) {
+
             e.update();
         }
 
-        collisionResolver.resolve(entities, tiles);
+        collisionResolver.resolve(labyrintheBuilder.getEntities(), labyrintheBuilder.getTiles());
 
-        for(GameEntity e : entities) {
-            e.applyMovement();
+        for(GameEntity e : labyrintheBuilder.getEntities()) {
+            e.applyMovement(collisionResolver);
             renderWindow.submit(e);
         }
 
@@ -53,14 +51,20 @@ public class World implements Game {
 
     @Override
     public boolean isFinished() {
-        return false;
+
+        boolean res = false;
+        for(GameEntity e : labyrintheBuilder.getEntities()) {
+
+            if (e.isHero() && e.getPv() <= 0) {
+                res = true;
+            }
+        }
+
+        return res;
     }
 
-    private TileBuilder tileBuilder;
-    private List<Tile> tiles;
     private WorldPainter renderWindow;
     private WorldController controller;
-    private EntityBuilder builder;
     private CollisionResolver collisionResolver;
-    private List<GameEntity> entities;
+    private LabyrintheBuilder labyrintheBuilder;
 }
