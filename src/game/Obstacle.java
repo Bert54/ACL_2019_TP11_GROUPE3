@@ -3,10 +3,12 @@ package game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Obstacle extends Tile {
+import engine.Texture;
 
+public class Obstacle extends Tile {
     public Obstacle(Vec2 position, Vec2 box) {
         super(position, box);
+        texture = TextureFactory.get("box.bmp");
     }
 
     public void onEnter(GameEntity e) {
@@ -15,8 +17,8 @@ public class Obstacle extends Tile {
 
     @Override
     public void draw(BufferedImage image) {
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.black);
-        crayon.fillRect(position.x, position.y, box.x, box.y);
+        texture.draw(image, position.x, position.y, box.x, box.y);
     }
+
+    private Texture texture;
 }

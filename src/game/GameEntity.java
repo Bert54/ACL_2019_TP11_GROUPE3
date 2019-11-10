@@ -34,6 +34,11 @@ public abstract class GameEntity implements Drawable {
         nextPosition.y += translation.y;
     }
 
+    public void moveTo(Vec2 pos) {
+        nextPosition.x += pos.x;
+        nextPosition.y += pos.y;
+    }
+
     public Vec2 getPosition() {
         return position;
     }

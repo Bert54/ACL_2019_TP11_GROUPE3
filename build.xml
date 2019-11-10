@@ -9,12 +9,13 @@
         <javac srcdir="src" destdir="build/classes"/>
     </target>
 
-    <target name="jar">
+    <target name="build" depends = "compile">
         <mkdir dir="build/jar"/>
         <jar destfile="build/jar/GameWorld.jar" basedir="build/classes">
             <manifest>
                 <attribute name="Main-Class" value="start.Main"/>
             </manifest>
+            <fileset dir="res"/>
         </jar>
     </target>
 

@@ -21,7 +21,7 @@ public class Hero extends GameEntity {
 
     public void draw(BufferedImage image) {
         Graphics2D crayon = (Graphics2D) image.getGraphics();
-		crayon.setColor(Color.red);
-		crayon.fillOval(position.x, position.y, 30, 30);
+        crayon.setColor(Color.red);
+        crayon.fillOval(position.x, position.y, box.x, box.y);
     }
 }

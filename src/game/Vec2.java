@@ -12,15 +12,6 @@ public class Vec2 {
         x = vector.x;
         y = vector.y;
     }
-
-    public boolean equals(Vec2 v) {
-
-        boolean res = false;
-        if (this.x == v.x && this.y == v.y){
-            res = true;
-        }
-        return res;
-    }
-
+    
     public int x, y;
 }

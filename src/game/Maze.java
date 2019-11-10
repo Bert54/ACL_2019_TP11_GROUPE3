@@ -28,6 +28,7 @@ public class Maze {
 
         tiles.add(tileBuilder.buildObstacle(new Vec2(400, 400), new Vec2(50, 50)));
 
+        tiles.add(tileBuilder.buildTeleportTile(new Vec2(100, 100), new Vec2(150, 150)));
     }
 
     public List<Tile> getTiles() {

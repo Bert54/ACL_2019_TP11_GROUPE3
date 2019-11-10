@@ -27,7 +27,6 @@ public class WorldPainter implements GamePainter {
 
     @Override
     public void draw(BufferedImage image) {
-
         for(Drawable drawable : drawables) {
             drawable.draw(image);
         }

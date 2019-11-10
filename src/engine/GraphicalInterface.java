@@ -27,7 +27,7 @@ public class GraphicalInterface  {
 	public GraphicalInterface(GamePainter gamePainter, GameController gameController){
 		JFrame f=new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setTitle("Labyrinthe");
+		f.setTitle("Maze");
 		
 		// attacher le panel contenant l'afficheur du game
 		this.panel=new DrawingPanel(gamePainter);

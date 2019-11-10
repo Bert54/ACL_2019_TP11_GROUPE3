@@ -14,7 +14,7 @@ public class Coin extends Tile {
 
     public void draw(BufferedImage image) {
         Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.green);
+        crayon.setColor(Color.yellow);
         crayon.fillOval(position.x, position.y, box.x, box.y);
     }
 
