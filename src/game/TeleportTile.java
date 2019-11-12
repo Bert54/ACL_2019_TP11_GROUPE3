@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 import engine.Texture;
 
 public class TeleportTile extends Tile {
-    public TeleportTile(Vec2 position, Vec2 exit) {
-        super(position, new Vec2(30, 30));
+    public TeleportTile(Vec2 position, Vec2 box, Vec2 exit) {
+        super(position, box);
         this.exit = exit;
     }
 

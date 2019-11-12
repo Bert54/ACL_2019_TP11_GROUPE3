@@ -7,14 +7,14 @@ public class EntityBuilder {
         this.controller = controller;
     }
 
-    public Hero buildHero(Vec2 pos) {
-        Hero hero = new Hero(pos, new Vec2(50, 50));
+    public Hero buildHero(Vec2 pos, Vec2 box) {
+        Hero hero = new Hero(pos, new Vec2(box.x, box.y));
         hero.setController(new HeroController(hero, controller));
         return hero;
     }
 
-    public Monster buildMonster() {
-        Monster monster = new Monster(new Vec2(200, 200), new Vec2(50, 50));
+    public Monster buildMonster(Vec2 pos, Vec2 box) {
+        Monster monster = new Monster(pos, box);
         monster.setController(new MonsterDefaultController(monster));
         return monster;
     }

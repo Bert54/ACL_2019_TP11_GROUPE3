@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Coin extends Tile {
-    public Coin(Vec2 position) {
-        super(position, new Vec2(30, 30));
+    public Coin(Vec2 position, Vec2 box) {
+        super(position, box);
     }
 
     public void onEnter(GameEntity e) {

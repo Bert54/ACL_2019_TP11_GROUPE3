@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import engine.Texture;
 
 public class Obstacle extends Tile {
+
     public Obstacle(Vec2 position, Vec2 box) {
         super(position, box);
         texture = TextureFactory.get("box.bmp");
