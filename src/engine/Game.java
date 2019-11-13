@@ -7,6 +7,11 @@ package engine;
  *         height
  */
 public interface Game {
+
+	public boolean start = false;
+
+	public boolean isStart();
+
 	public void evolve();
 
 	/**

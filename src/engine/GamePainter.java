@@ -1,5 +1,7 @@
 package engine;
 
+import game.Drawable;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -18,6 +20,8 @@ public interface GamePainter {
 	 *            image sur laquelle dessiner
 	 */
 	public abstract void draw(BufferedImage image);
+
+	public abstract void submit(Drawable drawable);
 
 	public abstract int getWidth();
 

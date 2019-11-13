@@ -41,6 +41,9 @@ public class WorldController implements GameController {
             case 'S':
                 commandBuffer.add(Cmd.DOWN);
                 break;
+            case KeyEvent.VK_ENTER:
+                start = true;
+                break;
             case 'q':
             case 'Q':
                 System.exit(0);
@@ -55,5 +58,10 @@ public class WorldController implements GameController {
     public void keyTyped(KeyEvent e) {
     }
 
+    public boolean isStart() {
+        return start;
+    }
+
     private List<Cmd> commandBuffer;
+    private boolean start;
 }
