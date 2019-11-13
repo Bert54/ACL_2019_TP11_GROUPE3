@@ -68,6 +68,18 @@ public class Maze {
 
                             tiles.add(tileBuilder.buildLavaTile(new Vec2(x, y), new Vec2(w, h)));
                             break;
+                        case "SpeedTile":
+
+                            tiles.add(tileBuilder.buildSpeedTile(new Vec2(x, y), new Vec2(w, h)));
+                            break;
+                        case "GlueTile":
+
+                            tiles.add(tileBuilder.buildGlueTile(new Vec2(x, y), new Vec2(w, h)));
+                            break;
+                        case "InvincibilityTile":
+
+                            tiles.add(tileBuilder.buildInvTile(new Vec2(x, y), new Vec2(w, h)));
+                            break;
                         case "Obstacle":
 
                             tiles.add(tileBuilder.buildObstacle(new Vec2(x,y), new Vec2(w, h)));

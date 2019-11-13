@@ -9,12 +9,20 @@ public abstract class GameEntity implements Drawable {
         this.box = box;
         health = 3;
         nextPosition = new Vec2(position);
+        this.invincibilityFrames = 0;
+        this.isGlued = false;
     }
 
     public abstract void update();
     
     public void applyMovement(CollisionResolver collisionResolver) {
         position = new Vec2(nextPosition);
+        if (this.invincibilityFrames > 0) {
+            this.invincibilityFrames -= 1;
+            if (this.invincibilityFrames <= 0) {
+                this.health = this.previousHealth;
+            }
+        }
     }
 
     public void cancelMovement() {
@@ -30,6 +38,10 @@ public abstract class GameEntity implements Drawable {
     }
 
     public void move(Vec2 translation) {
+        if (this.isGlued) {
+            translation.x = translation.x / 5;
+            translation.y = translation.y / 5;
+        }
         nextPosition.x += translation.x;
         nextPosition.y += translation.y;
     }
@@ -64,5 +76,10 @@ public abstract class GameEntity implements Drawable {
     protected Vec2 position;
     protected Vec2 nextPosition;
     protected Vec2 box;
+
+    protected int previousHealth;
     protected int health;
+    protected int invincibilityFrames;
+
+    protected boolean isGlued;
 }

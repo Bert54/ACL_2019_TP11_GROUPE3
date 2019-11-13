@@ -19,4 +19,16 @@ public class TileBuilder {
         return new LavaTile(location, area);
     }
 
+    SpeedTile buildSpeedTile(Vec2 location, Vec2 area) {
+        return new SpeedTile(location, area);
+    }
+
+    GlueTile buildGlueTile(Vec2 location, Vec2 area) {
+        return new GlueTile(location, area);
+    }
+
+    InvincibilityTile buildInvTile(Vec2 location, Vec2 area) {
+        return new InvincibilityTile(location, area);
+    }
+
 }
