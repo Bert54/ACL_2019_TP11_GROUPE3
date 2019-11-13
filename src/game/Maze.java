@@ -64,6 +64,10 @@ public class Maze {
 
                             tiles.add(tileBuilder.buildTeleportTile(new Vec2(x,y), new Vec2(w,h), new Vec2(exitX, exitY)));
                             break;
+                        case "LavaTile":
+
+                            tiles.add(tileBuilder.buildLavaTile(new Vec2(x, y), new Vec2(w, h)));
+                            break;
                         case "Obstacle":
 
                             tiles.add(tileBuilder.buildObstacle(new Vec2(x,y), new Vec2(w, h)));

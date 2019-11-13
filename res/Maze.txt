@@ -1,6 +1,7 @@
 Hero 300,300 50,50
 Monster 200,200 30,30
 Coin 10,10 30,30
+LavaTile 0,150 30,30
 TeleportTile 100,100 30,30 150,150
 Obstacle 400,400 50,50
 RightWall 10,0 10,0

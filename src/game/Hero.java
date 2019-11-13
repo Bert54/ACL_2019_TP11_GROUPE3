@@ -9,7 +9,7 @@ public class Hero extends GameEntity {
     }
 
     public void update() {
-        if(health == 0) {
+        if(health <= 0) {
             System.exit(0);
         }
         controller.onUpdate();
