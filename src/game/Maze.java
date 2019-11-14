@@ -13,7 +13,7 @@ public class Maze {
     private EntityBuilder builder;
     private List<GameEntity> entities;
 
-    public Maze(WorldController controller, int width, int height) {
+    public Maze(WorldController controller, int windowWidth, int windowHeight) {
         entities = new ArrayList<GameEntity>();
         tiles = new ArrayList<Tile>();
         builder = new EntityBuilder(controller);
@@ -86,19 +86,19 @@ public class Maze {
                             break;
                         case "TopWall":
 
-                            tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(width, h)));
+                            tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(windowWidth, h)));
                             break;
                         case "LeftWall":
 
-                            tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(w, height)));
+                            tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(w, windowHeight)));
                             break;
                         case "RightWall":
 
-                            tiles.add(tileBuilder.buildObstacle(new Vec2(width - x, y), new Vec2(w, height)));
+                            tiles.add(tileBuilder.buildObstacle(new Vec2(windowWidth - x, y), new Vec2(w, windowHeight)));
                             break;
                         case "BottomWall":
 
-                            tiles.add(tileBuilder.buildObstacle(new Vec2(x, height - y), new Vec2(width, h)));
+                            tiles.add(tileBuilder.buildObstacle(new Vec2(x, windowHeight - y), new Vec2(windowWidth, h)));
                             break;
                     }
                 }

@@ -30,7 +30,6 @@ public class LavaTile extends Tile {
     }
 
     public void onExit(GameEntity e) {
-        System.out.println(e.health);
         e.onSpecialTile = false;
     }
 

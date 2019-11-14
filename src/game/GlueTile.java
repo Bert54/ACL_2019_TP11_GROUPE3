@@ -19,7 +19,6 @@ public class GlueTile extends Tile {
 
     @Override
     public void onTile(GameEntity e) {
-        System.out.println("bb");
         e.slowedFrames = GLUEFRAMESAM;
     }
 

@@ -30,7 +30,7 @@ public class World implements Game {
 
             int Wsquare = 210;
             int Hsquare = 45;
-            Button jouer = new Button("Jouer (Entrer)", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare*3)), new Vec2(Wsquare, Hsquare));
+            Button jouer = new Button("Jouer", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare*3)), new Vec2(Wsquare, Hsquare));
             renderWindow.submit(jouer);
 
             Button instruction = new Button("Instructions", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare + Hsquare/2)), new Vec2(Wsquare, Hsquare));
