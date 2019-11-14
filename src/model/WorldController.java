@@ -49,13 +49,27 @@ public class WorldController implements GameController {
             case 'S':
                 commandBuffer.add(Cmd.DOWN);
                 break;
+            case KeyEvent.VK_ENTER:
+                start = true;
+                break;
             case 'q':
             case 'Q':
                 System.exit(0);
-            default:
-                System.out.println(e.getKeyChar() + " " + e.getKeyLocation());
         }
     }
 
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public boolean isStart() {
+        return start;
+    }
+
     private List<Cmd> commandBuffer;
+    private boolean start;
 }

@@ -9,7 +9,7 @@ public class TextureFactory {
     TextureFactory() {
     }
 
-    static Texture get(String name) {
+    public static Texture get(String name) {
         Texture t = textures.get(name);
         if(t != null) {
             return t;

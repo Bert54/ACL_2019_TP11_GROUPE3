@@ -1,14 +1,10 @@
 package model;
 
-import engine.Cmd;
 import engine.Game;
-import engine.GameController;
 
+import engine.Texture;
 import game.*;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
 
 public class World implements Game {
     public World(WorldPainter painter, WorldController controller) {
@@ -20,27 +16,64 @@ public class World implements Game {
     }
 
     @Override
+    public boolean isStart() {
+        return false;
+    }
+
+    @Override
     public void evolve() {
-        for(Tile t : maze.getTiles()) {
-            renderWindow.submit(t);
+
+        if (!controller.isStart()) {
+            Texture texture = TextureFactory.get("maze.bmp");
+            Background background = new Background(texture, new Vec2(renderWindow.getWidth(), renderWindow.getHeight()));
+            renderWindow.submit(background);
+
+            int Wsquare = 210;
+            int Hsquare = 45;
+            Button jouer = new Button("Jouer (Entrer)", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare*3)), new Vec2(Wsquare, Hsquare));
+            renderWindow.submit(jouer);
+
+            Button instruction = new Button("Instructions", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare + Hsquare/2)), new Vec2(Wsquare, Hsquare));
+            renderWindow.submit(instruction);
+        }else {
+
+            for (Tile t : maze.getTiles()) {
+                renderWindow.submit(t);
+            }
+
+            for (GameEntity e : maze.getEntities()) {
+                e.update();
+            }
+
+            collisionResolver.resolve(maze.getEntities(), maze.getTiles());
+
+            for (GameEntity e : maze.getEntities()) {
+                e.applyMovement(collisionResolver);
+                renderWindow.submit(e);
+            }
         }
-
-        for(GameEntity e : maze.getEntities()) {
-            e.update();
-        }
-
-        collisionResolver.resolve(maze.getEntities(), maze.getTiles());
-
-        for(GameEntity e : maze.getEntities()) {
-            e.applyMovement(collisionResolver);
-            renderWindow.submit(e);
-        }
-
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+
+        boolean res = false;
+        Texture texture;
+
+        for (GameEntity e : maze.getEntities()) {
+            if (e.isWin()){
+                texture = TextureFactory.get("goodjob.bmp");
+                Background background = new Background(texture, new Vec2(renderWindow.getWidth(), renderWindow.getHeight()));
+                renderWindow.submit(background);
+                res = true;
+            }else if(e.isLose()){
+                texture = TextureFactory.get("gameover.bmp");
+                Background background = new Background(texture, new Vec2(renderWindow.getWidth(), renderWindow.getHeight()));
+                renderWindow.submit(background);
+                res = true;
+            }
+        }
+        return res;
     }
 
     private WorldPainter renderWindow;

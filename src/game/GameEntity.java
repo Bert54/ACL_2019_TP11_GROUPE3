@@ -86,6 +86,18 @@ public abstract class GameEntity implements Drawable {
 
     public abstract void collectCoin(Coin c);
 
+    public boolean isWin() {
+        return win;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public boolean isLose() {
+        return lose;
+    }
+
     public abstract void draw(BufferedImage image);
 
     protected EntityController controller;
@@ -102,4 +114,7 @@ public abstract class GameEntity implements Drawable {
     protected int slowedFrames;
 
     protected int speedFrames;
+  
+    protected boolean win;
+    protected boolean lose;
 }

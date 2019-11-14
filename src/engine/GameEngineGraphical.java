@@ -1,5 +1,6 @@
 package engine;
 
+
 /**
  * @author Horatiu Cirstea, Vincent Thomas
  *
@@ -61,6 +62,8 @@ public class GameEngineGraphical {
 			gameController.clearCommands();
 			Thread.sleep(100);
 		}
+
+		this.gui.paint();
 	}
 
 }
