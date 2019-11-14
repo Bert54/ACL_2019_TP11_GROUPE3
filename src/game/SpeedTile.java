@@ -17,6 +17,16 @@ public class SpeedTile extends Tile {
     @Override
     public void onEnter(GameEntity e) {
         //TODO add an attribute somewhere which sets the speed of the entity
+        e.onSpecialTile = true;
+    }
+
+    @Override
+    public void onTile(GameEntity e) {
+
+    }
+
+    public void onExit(GameEntity e) {
+        e.onSpecialTile = false;
     }
 
     @Override

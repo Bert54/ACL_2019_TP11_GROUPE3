@@ -4,13 +4,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class GameEntity implements Drawable {
+
+    public static final int GLUEDIVIDESPEED = 2;
+    public static final int HITINVINCIBILITYFRAMES = 15;
+
     public GameEntity(Vec2 position, Vec2 box) {
         this.position = position;
         this.box = box;
         health = 3;
         nextPosition = new Vec2(position);
         this.invincibilityFrames = 0;
-        this.isGlued = false;
+        this.slowedFrames = 0;
     }
 
     public abstract void update();
@@ -19,8 +23,9 @@ public abstract class GameEntity implements Drawable {
         position = new Vec2(nextPosition);
         if (this.invincibilityFrames > 0) {
             this.invincibilityFrames -= 1;
-            if (this.invincibilityFrames <= 0) {
+            if (this.invincibilityFrames <= 0 && this.previousHealth != 0) {
                 this.health = this.previousHealth;
+                this.previousHealth = 0;
             }
         }
     }
@@ -38,9 +43,10 @@ public abstract class GameEntity implements Drawable {
     }
 
     public void move(Vec2 translation) {
-        if (this.isGlued) {
-            translation.x = translation.x / 5;
-            translation.y = translation.y / 5;
+        if (this.slowedFrames > 0) {
+            translation.x = translation.x / GLUEDIVIDESPEED;
+            translation.y = translation.y / GLUEDIVIDESPEED;
+            this.slowedFrames =- 1;
         }
         nextPosition.x += translation.x;
         nextPosition.y += translation.y;
@@ -65,7 +71,10 @@ public abstract class GameEntity implements Drawable {
 
     public void onHit() {
         cancelMovement();
-        --health;
+        if (this.invincibilityFrames <= 0) {
+            --health;
+            this.invincibilityFrames = HITINVINCIBILITYFRAMES;
+        }
     }
 
     public abstract void collectCoin(Coin c);
@@ -77,9 +86,11 @@ public abstract class GameEntity implements Drawable {
     protected Vec2 nextPosition;
     protected Vec2 box;
 
+    protected boolean onSpecialTile;
+
     protected int previousHealth;
     protected int health;
     protected int invincibilityFrames;
 
-    protected boolean isGlued;
+    protected int slowedFrames;
 }

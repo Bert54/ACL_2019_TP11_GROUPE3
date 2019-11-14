@@ -5,13 +5,26 @@ import java.awt.image.BufferedImage;
 
 public class GlueTile extends Tile {
 
+    public static final int GLUEFRAMESAM = 1;
+
     public GlueTile(Vec2 position, Vec2 box) {
         super(position, box);
     }
 
     @Override
     public void onEnter(GameEntity e) {
-        e.isGlued = true;
+        e.slowedFrames = GLUEFRAMESAM;
+        e.onSpecialTile = true;
+    }
+
+    @Override
+    public void onTile(GameEntity e) {
+        System.out.println("bb");
+        e.slowedFrames = GLUEFRAMESAM;
+    }
+
+    public void onExit(GameEntity e) {
+        e.onSpecialTile = false;
     }
 
     @Override

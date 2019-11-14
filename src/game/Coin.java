@@ -12,6 +12,15 @@ public class Coin extends Tile {
         e.collectCoin(this);
     }
 
+    @Override
+    public void onTile(GameEntity e) {
+
+    }
+
+    public void onExit(GameEntity e) {
+
+    }
+
     public void draw(BufferedImage image) {
         Graphics2D crayon = (Graphics2D) image.getGraphics();
         crayon.setColor(Color.yellow);

@@ -39,6 +39,11 @@ public class CollisionResolver {
                     ) {
                     collision(entities.get(i), tiles.get(j));
                 }
+                else {
+                    if (entities.get(i).onSpecialTile) {
+                        noCollision(entities.get(i), tiles.get(j));
+                    }
+                }
             }
         }
     }
@@ -49,6 +54,16 @@ public class CollisionResolver {
     }
 
     private void collision(GameEntity e1, Tile t){
-        t.onEnter(e1);
+        if (e1.onSpecialTile) {
+            t.onTile(e1);
+        }
+        else {
+
+            t.onEnter(e1);
+        }
+    }
+
+    private void noCollision(GameEntity e, Tile t) {
+        t.onExit(e);
     }
 }

@@ -24,6 +24,14 @@ public class WorldController implements GameController {
 
     @Override
     public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
         switch (e.getKeyChar()) {
             case 'd':
             case 'D':
@@ -44,15 +52,9 @@ public class WorldController implements GameController {
             case 'q':
             case 'Q':
                 System.exit(0);
+            default:
+                System.out.println(e.getKeyChar() + " " + e.getKeyLocation());
         }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
     }
 
     private List<Cmd> commandBuffer;

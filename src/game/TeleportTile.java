@@ -16,6 +16,15 @@ public class TeleportTile extends Tile {
     }
 
     @Override
+    public void onTile(GameEntity e) {
+        // stub
+    }
+
+    public void onExit(GameEntity e) {
+        e.onSpecialTile = false;
+    }
+
+    @Override
     public void draw(BufferedImage image) {
         Graphics2D crayon = (Graphics2D) image.getGraphics();
         crayon.setColor(Color.pink);

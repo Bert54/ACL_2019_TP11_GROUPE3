@@ -21,7 +21,14 @@ public class Hero extends GameEntity {
 
     public void draw(BufferedImage image) {
         Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.red);
+        if (this.invincibilityFrames > 0) {
+            Color c = new Color(255, 0, 0, 130);
+            crayon.setColor(c);
+        }
+        else {
+            crayon.setColor(Color.red);
+        }
         crayon.fillOval(position.x, position.y, box.x, box.y);
+        //System.out.println(this.health);
     }
 }
