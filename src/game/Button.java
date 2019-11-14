@@ -1,9 +1,12 @@
 package game;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
-public class Button implements Drawable{
+public class Button extends JButton implements Drawable, MouseListener {
 
     private Vec2 position;
     private Vec2 box;
@@ -13,6 +16,7 @@ public class Button implements Drawable{
         this.position = position;
         this.box = box;
         this.text = text;
+        this.addMouseListener(this);
     }
 
     @Override
@@ -30,6 +34,31 @@ public class Button implements Drawable{
 
     public Vec2 getBox() {
         return box;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("a");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println("b");
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("c");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        System.out.println("d");
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        System.out.println("e");
     }
 }
 
