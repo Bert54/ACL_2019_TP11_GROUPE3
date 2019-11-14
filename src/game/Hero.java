@@ -29,6 +29,5 @@ public class Hero extends GameEntity {
             crayon.setColor(Color.red);
         }
         crayon.fillOval(position.x, position.y, box.x, box.y);
-        System.out.println(this.speedFrames);
     }
 }
