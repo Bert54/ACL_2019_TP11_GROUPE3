@@ -1,7 +1,5 @@
 package game;
 
-import java.util.ArrayList;
-
 public class TileBuilder {
     Obstacle buildObstacle(Vec2 pos, Vec2 box) {
         return new Obstacle(pos, box);
@@ -19,8 +17,8 @@ public class TileBuilder {
         return new LavaTile(location, area);
     }
 
-    SpeedTile buildSpeedTile(Vec2 location, Vec2 area) {
-        return new SpeedTile(location, area);
+    SwiftTile buildSpeedTile(Vec2 location, Vec2 area) {
+        return new SwiftTile(location, area);
     }
 
     GlueTile buildGlueTile(Vec2 location, Vec2 area) {

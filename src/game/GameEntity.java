@@ -7,6 +7,7 @@ public abstract class GameEntity implements Drawable {
 
     public static final int GLUEDIVIDESPEED = 2;
     public static final int HITINVINCIBILITYFRAMES = 15;
+    public static final float SWIFTSPEEDMODIFIER = 2.5f;
 
     public GameEntity(Vec2 position, Vec2 box) {
         this.position = position;
@@ -15,6 +16,7 @@ public abstract class GameEntity implements Drawable {
         nextPosition = new Vec2(position);
         this.invincibilityFrames = 0;
         this.slowedFrames = 0;
+        this.speedFrames = 0;
     }
 
     public abstract void update();
@@ -43,10 +45,15 @@ public abstract class GameEntity implements Drawable {
     }
 
     public void move(Vec2 translation) {
+        if (this.speedFrames > 0) {
+            translation.x = (int)(translation.x * SWIFTSPEEDMODIFIER);
+            translation.y = (int)(translation.y * SWIFTSPEEDMODIFIER);
+            this.speedFrames -= 1;
+        }
         if (this.slowedFrames > 0) {
-            translation.x = translation.x / GLUEDIVIDESPEED;
-            translation.y = translation.y / GLUEDIVIDESPEED;
-            this.slowedFrames =- 1;
+            translation.x = (translation.x * GLUEDIVIDESPEED);
+            translation.y = (translation.y * GLUEDIVIDESPEED);
+            this.slowedFrames -= 1;
         }
         nextPosition.x += translation.x;
         nextPosition.y += translation.y;
@@ -93,4 +100,6 @@ public abstract class GameEntity implements Drawable {
     protected int invincibilityFrames;
 
     protected int slowedFrames;
+
+    protected int speedFrames;
 }

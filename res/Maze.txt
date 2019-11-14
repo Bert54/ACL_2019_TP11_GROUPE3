@@ -8,6 +8,6 @@ RightWall 10,0 10,0
 LeftWall 0,0 10,0
 TopWall 0,0 0,10
 BottomWall 0,10 0,10
-SpeedTile 200,350 30,30
+SwiftTile 200,350 30,30
 GlueTile 350,100 30,30
 InvincibilityTile 220,125 30,30

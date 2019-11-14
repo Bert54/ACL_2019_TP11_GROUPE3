@@ -68,7 +68,7 @@ public class Maze {
 
                             tiles.add(tileBuilder.buildLavaTile(new Vec2(x, y), new Vec2(w, h)));
                             break;
-                        case "SpeedTile":
+                        case "SwiftTile":
 
                             tiles.add(tileBuilder.buildSpeedTile(new Vec2(x, y), new Vec2(w, h)));
                             break;

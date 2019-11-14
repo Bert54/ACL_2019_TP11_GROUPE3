@@ -3,12 +3,11 @@ package game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SpeedTile extends Tile {
+public class SwiftTile extends Tile {
 
-    public static final int SPEEDBONUSAMOUNT = 2;
-    public static final int SPEEDBONUSDURATION = 10;
+    public static final int SPEEDBONUSDURATION = 15;
 
-    public SpeedTile(Vec2 position, Vec2 box) {
+    public SwiftTile(Vec2 position, Vec2 box) {
 
         super(position, box);
 
@@ -16,12 +15,14 @@ public class SpeedTile extends Tile {
 
     @Override
     public void onEnter(GameEntity e) {
-        //TODO add an attribute somewhere which sets the speed of the entity
+        e.speedFrames = SPEEDBONUSDURATION;
         e.onSpecialTile = true;
     }
 
     @Override
     public void onTile(GameEntity e) {
+
+        e.speedFrames = SPEEDBONUSDURATION;
 
     }
 
