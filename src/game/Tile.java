@@ -18,6 +18,10 @@ public abstract class Tile implements Drawable {
 
     public abstract void onEnter(GameEntity e);
 
+    public abstract void onTile(GameEntity e);
+
+    public abstract void onExit(GameEntity e);
+
     public abstract void draw(BufferedImage image);
 
     protected Vec2 position;

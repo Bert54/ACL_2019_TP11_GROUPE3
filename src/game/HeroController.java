@@ -13,7 +13,8 @@ public class HeroController implements EntityController {
 
     public void onUpdate() {
         List<Cmd> commands = controller.getCommands();
-        for(Cmd command : commands) {
+        for (int i = 0 ; i < commands.size() ; i++) {
+            Cmd command =  commands.get(i);
             switch(command) {
                 case RIGHT:
                     hero.move(new Vec2(5, 0));
@@ -28,6 +29,7 @@ public class HeroController implements EntityController {
                     hero.move(new Vec2(0, 5));
                     break;
             }
+            controller.clearCommands();
         }
     }
 

@@ -24,6 +24,14 @@ public class WorldController implements GameController {
 
     @Override
     public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
         switch (e.getKeyChar()) {
             case 'd':
             case 'D':

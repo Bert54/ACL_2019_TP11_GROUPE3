@@ -17,6 +17,15 @@ public class Obstacle extends Tile {
     }
 
     @Override
+    public void onTile(GameEntity e) {
+        //stub
+    }
+
+    public void onExit(GameEntity e) {
+        //stub
+    }
+
+    @Override
     public void draw(BufferedImage image) {
         texture.draw(image, position.x, position.y, box.x, box.y);
     }
