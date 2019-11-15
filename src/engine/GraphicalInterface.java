@@ -24,8 +24,7 @@ public class GraphicalInterface  {
 	 * @param gameController l'afficheur a utiliser dans le moteur
 	 * 
 	 */
-	public GraphicalInterface(GamePainter gamePainter, GameController gameController){
-		JFrame f=new JFrame();
+	public GraphicalInterface(GamePainter gamePainter, GameController gameController, JFrame f){
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setTitle("Maze");
 		

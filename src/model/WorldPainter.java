@@ -4,6 +4,7 @@ import engine.GamePainter;
 
 import game.Drawable;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -42,5 +43,11 @@ public class WorldPainter implements GamePainter {
     public int getHeight() {
         return HEIGHT;
     }
+
+    @Override
+    public void setFrame(JFrame f) {
+
+    }
+
     private List<Drawable> drawables;
 }

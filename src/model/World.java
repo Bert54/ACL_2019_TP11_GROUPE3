@@ -1,18 +1,24 @@
 package model;
 
+import controllers.ExitAppMouseController;
+import controllers.StartGameMouseController;
 import engine.Game;
 
 import engine.Texture;
 import game.*;
 
+import javax.swing.*;
+
 
 public class World implements Game {
-    public World(WorldPainter painter, WorldController controller) {
+    public World(WorldPainter painter, WorldController controller, JFrame f) {
         renderWindow = painter;
         this.controller = controller;
 
         this.maze = new Maze(controller, renderWindow.getWidth(), renderWindow.getHeight());
         collisionResolver = new CollisionResolver();
+
+        this.frame = f;
     }
 
     @Override
@@ -30,10 +36,11 @@ public class World implements Game {
 
             int Wsquare = 210;
             int Hsquare = 45;
-            Button jouer = new Button("Jouer", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare*3)), new Vec2(Wsquare, Hsquare));
+            Button jouer = new Button("Jouer", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare*3)), new Vec2(Wsquare, Hsquare), this.frame);
             renderWindow.submit(jouer);
-
-            Button instruction = new Button("Instructions", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare + Hsquare/2)), new Vec2(Wsquare, Hsquare));
+            Button instruction = new Button("Instructions", new Vec2((renderWindow.getWidth()/2)-(Wsquare/2), renderWindow.getHeight()-(Hsquare + Hsquare/2)), new Vec2(Wsquare, Hsquare), this.frame);
+            jouer.addMouseListener(new StartGameMouseController(this.controller, jouer, instruction));
+            instruction.addMouseListener(new ExitAppMouseController(this.controller));
             renderWindow.submit(instruction);
         }else {
 
@@ -51,6 +58,7 @@ public class World implements Game {
                 e.applyMovement(collisionResolver);
                 renderWindow.submit(e);
             }
+
         }
     }
 
@@ -80,4 +88,5 @@ public class World implements Game {
     private WorldController controller;
     private CollisionResolver collisionResolver;
     private Maze maze;
+    private JFrame frame;
 }

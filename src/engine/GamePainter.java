@@ -2,6 +2,7 @@ package engine;
 
 import game.Drawable;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,6 +20,7 @@ public interface GamePainter {
 	 * @param image
 	 *            image sur laquelle dessiner
 	 */
+
 	public abstract void draw(BufferedImage image);
 
 	public abstract void submit(Drawable drawable);
@@ -26,5 +28,7 @@ public interface GamePainter {
 	public abstract int getWidth();
 
 	public abstract int getHeight();
+
+	public abstract void setFrame(JFrame f);
 	
 }

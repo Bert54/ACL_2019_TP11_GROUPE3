@@ -1,6 +1,8 @@
 package engine;
 
 
+import javax.swing.*;
+
 /**
  * @author Horatiu Cirstea, Vincent Thomas
  *
@@ -40,11 +42,12 @@ public class GameEngineGraphical {
 	 *            controlleur a utiliser
 	 *            
 	 */
-	public GameEngineGraphical(Game game, GamePainter gamePainter, GameController gameController) {
+	public GameEngineGraphical(Game game, GamePainter gamePainter, GameController gameController, JFrame f) {
 		// creation du game
 		this.game = game;
 		this.gamePainter = gamePainter;
 		this.gameController = gameController;
+		this.frame = f;
 	}
 
 	/**
@@ -53,7 +56,7 @@ public class GameEngineGraphical {
 	public void run() throws InterruptedException {
 
 		// creation de l'interface graphique
-		this.gui = new GraphicalInterface(this.gamePainter,this.gameController);
+		this.gui = new GraphicalInterface(this.gamePainter,this.gameController, this.frame);
 
 		// boucle de game
 		while (!this.game.isFinished()) {
@@ -65,5 +68,7 @@ public class GameEngineGraphical {
 
 		this.gui.paint();
 	}
+
+	private JFrame frame;
 
 }

@@ -2,6 +2,7 @@ package model;
 
 import engine.Cmd;
 import engine.GameController;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.awt.event.KeyEvent;
 
@@ -17,7 +18,7 @@ public class WorldController implements GameController {
     public List<Cmd> getCommands() {
         return commandBuffer;
     }
-    
+
     public void clearCommands() {
         commandBuffer.clear();
     }
@@ -60,6 +61,12 @@ public class WorldController implements GameController {
 
     public boolean isStart() {
         return start;
+    }
+
+    public void setStart(boolean status) {
+
+        this.start = status;
+
     }
 
     private List<Cmd> commandBuffer;
