@@ -17,8 +17,12 @@ public class Button extends JPanel implements Drawable {
     private Vec2 box;
     private String text;
 
-    public Button(String text, Vec2 position, Vec2 box, JFrame f) {
+    public Button() {
         super();
+        this.setEnabled(false);
+    }
+
+    public void setButton(String text, Vec2 position, Vec2 box, JFrame f) {
         this.position = position;
         this.box = box;
         this.text = text;

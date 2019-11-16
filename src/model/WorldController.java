@@ -69,6 +69,17 @@ public class WorldController implements GameController {
 
     }
 
+    public boolean isInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(boolean status) {
+
+        this.instruction = status;
+
+    }
+
     private List<Cmd> commandBuffer;
     private boolean start;
+    private boolean instruction;
 }
