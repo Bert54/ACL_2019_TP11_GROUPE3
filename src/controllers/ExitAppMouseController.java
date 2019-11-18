@@ -18,7 +18,7 @@ public class ExitAppMouseController implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (!((WorldController)worldController).isStart()) {
+        if (!((WorldController)worldController).isStart() && !((WorldController)worldController).isInstruction()) {
             System.exit(0);
         }
     }

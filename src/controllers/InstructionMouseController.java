@@ -32,7 +32,6 @@ public class InstructionMouseController implements MouseListener {
             this.startGameButton.setEnabled(false);
             this.instructionGameButton.setEnabled(false);
             this.closeGameButton.setEnabled(false);
-            this.closeGameButton.setEnabled(true);
         }
     }
 

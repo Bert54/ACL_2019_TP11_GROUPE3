@@ -26,12 +26,12 @@ public class StartGameMouseController implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (!((WorldController)worldController).isStart()) {
+        if (!((WorldController)worldController).isStart() && !((WorldController)worldController).isInstruction()) {
             ((WorldController)worldController).setStart(true);
             this.startGameButton.setEnabled(false);
             this.instructionGameButton.setEnabled(false);
             this.closeGameButton.setEnabled(false);
-            this.closeGameButton.setEnabled(false);
+
         }
     }
 
