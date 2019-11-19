@@ -14,23 +14,29 @@ public class LavaTile extends Tile {
 
     @Override
     public void onEnter(GameEntity e) {
-        if (e.invincibilityFrames <= 0) {
-            e.health -= LAVADAMAGE;
-            e.onSpecialTile = true;
-            e.invincibilityFrames = LAVAINVINCIBILITY;
+        if (e != null) {
+            if (e.invincibilityFrames <= 0) {
+                e.health -= LAVADAMAGE;
+                e.onSpecialTile = true;
+                e.invincibilityFrames = LAVAINVINCIBILITY;
+            }
         }
     }
 
     @Override
     public void onTile(GameEntity e) {
-        if (e.invincibilityFrames <= 0) {
-            e.health -= LAVADAMAGE;
-            e.invincibilityFrames = LAVAINVINCIBILITY;
+        if (e != null) {
+            if (e.invincibilityFrames <= 0) {
+                e.health -= LAVADAMAGE;
+                e.invincibilityFrames = LAVAINVINCIBILITY;
+            }
         }
     }
 
     public void onExit(GameEntity e) {
-        e.onSpecialTile = false;
+        if (e != null) {
+            e.onSpecialTile = false;
+        }
     }
 
     @Override

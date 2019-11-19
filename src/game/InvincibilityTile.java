@@ -14,21 +14,27 @@ public class InvincibilityTile extends Tile {
 
     @Override
     public void onEnter(GameEntity e) {
-        if (e.invincibilityFrames <= 0) {
-            e.previousHealth = e.health;
-            e.health = INVINCIBLEHEALTH;
+        if (e != null) {
+            if (e.invincibilityFrames <= 0) {
+                e.previousHealth = e.health;
+                e.health = INVINCIBLEHEALTH;
+            }
+            e.invincibilityFrames = INVINCIBILITYFRAMESAMOUNT;
+            e.onSpecialTile = true;
         }
-        e.invincibilityFrames = INVINCIBILITYFRAMESAMOUNT;
-        e.onSpecialTile = true;
     }
 
     @Override
     public void onTile(GameEntity e) {
-        e.invincibilityFrames = INVINCIBILITYFRAMESAMOUNT;
+        if (e != null) {
+            e.invincibilityFrames = INVINCIBILITYFRAMESAMOUNT;
+        }
     }
 
     public void onExit(GameEntity e) {
-        e.onSpecialTile = false;
+        if (e != null) {
+            e.onSpecialTile = false;
+        }
     }
 
     @Override

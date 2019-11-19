@@ -13,17 +13,23 @@ public class GlueTile extends Tile {
 
     @Override
     public void onEnter(GameEntity e) {
-        e.slowedFrames = GLUEFRAMESAM;
-        e.onSpecialTile = true;
+        if (e != null) {
+            e.slowedFrames = GLUEFRAMESAM;
+            e.onSpecialTile = true;
+        }
     }
 
     @Override
     public void onTile(GameEntity e) {
-        e.slowedFrames = GLUEFRAMESAM;
+        if (e != null) {
+            e.slowedFrames = GLUEFRAMESAM;
+        }
     }
 
     public void onExit(GameEntity e) {
-        e.onSpecialTile = false;
+        if (e != null) {
+            e.onSpecialTile = false;
+        }
     }
 
     @Override

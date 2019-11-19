@@ -9,12 +9,16 @@ public class Coin extends Tile {
     }
 
     public void onEnter(GameEntity e) {
-        e.collectCoin(this);
+        if (e != null) {
+            e.collectCoin(this);
+        }
     }
 
     @Override
     public void onTile(GameEntity e) {
+        if (e != null) {
 
+        }
     }
 
     public void onExit(GameEntity e) {

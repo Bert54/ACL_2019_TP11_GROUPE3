@@ -15,19 +15,24 @@ public class SwiftTile extends Tile {
 
     @Override
     public void onEnter(GameEntity e) {
-        e.speedFrames = SPEEDBONUSDURATION;
-        e.onSpecialTile = true;
+        if (e != null) {
+            e.speedFrames = SPEEDBONUSDURATION;
+            e.onSpecialTile = true;
+        }
     }
 
     @Override
     public void onTile(GameEntity e) {
-
-        e.speedFrames = SPEEDBONUSDURATION;
+        if (e != null) {
+            e.speedFrames = SPEEDBONUSDURATION;
+        }
 
     }
 
     public void onExit(GameEntity e) {
-        e.onSpecialTile = false;
+        if (e != null) {
+            e.onSpecialTile = false;
+        }
     }
 
     @Override
