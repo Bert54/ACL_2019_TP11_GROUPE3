@@ -1,4 +1,4 @@
-package tests.tiles;
+package tests.entities;
 
 import game.GameEntity;
 import game.Hero;

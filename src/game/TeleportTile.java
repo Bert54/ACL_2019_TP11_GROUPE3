@@ -4,24 +4,37 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import engine.Texture;
+import exceptions.TeleportNegativeCoordinatesException;
 
 public class TeleportTile extends Tile {
+
     public TeleportTile(Vec2 position, Vec2 box, Vec2 exit) {
         super(position, box);
+
+        if (exit.x < 0 || exit.y < 0) {
+            throw new TeleportNegativeCoordinatesException();
+        }
+
         this.exit = exit;
     }
 
     public void onEnter(GameEntity e) {
-        e.moveTo(exit);
+        if (e != null) {
+            e.moveTo(exit);
+        }
     }
 
     @Override
     public void onTile(GameEntity e) {
-        // stub
+        if (e != null) {
+            // stub
+        }
     }
 
     public void onExit(GameEntity e) {
-        e.onSpecialTile = false;
+        if (e != null) {
+            e.onSpecialTile = false;
+        }
     }
 
     @Override

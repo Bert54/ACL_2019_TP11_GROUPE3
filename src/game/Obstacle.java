@@ -13,16 +13,22 @@ public class Obstacle extends Tile {
     }
 
     public void onEnter(GameEntity e) {
-        e.cancelMovement();
+        if (e != null) {
+            e.cancelMovement();
+        }
     }
 
     @Override
     public void onTile(GameEntity e) {
-        //stub
+        if (e != null) {
+            //stub
+        }
     }
 
     public void onExit(GameEntity e) {
-        //stub
+        if (e != null) {
+            //stub
+        }
     }
 
     @Override
