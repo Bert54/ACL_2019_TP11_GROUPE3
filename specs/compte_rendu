@@ -10,7 +10,7 @@ Sprint 1 retrospective :
 Le travail à bien été partagé ce qui a facilité le developpement de l'application
 On a du modifié un peu notre diagramme de classes
 
-Décision pour le Sprint 2 :
+Décisions pour le Sprint 2 :
     obtenir un deltaTime dans la boucle principale
     generer le labyrinthe a partir d'un fichier
     mettre en place un systeme de camera
@@ -19,4 +19,13 @@ Décision pour le Sprint 2 :
 
 Sprint 2 retrospective :
 Toutes les fonctionnalités n'ont pas été implémentées par manque de temps, il reste à
-faire le deltaTime et les nouveaux types de monstre.
+faire le deltaTime et les nouveaux types de monstre. Des premiers tests ont été créées.
+La fusion des différentes parties ont été faites sans problèmes.
+
+Décisions pour le Sprint 3 :
+    construire un vrai labyrinthe
+    ajouter des objectifs secondaires (devoir collecter des objets par exemple)
+    ajouter des textures/sprites
+    ajouter un hud (points de vie, score, etc..)
+    ajouter bouton start/pause
+    (si on a le temps: système sauvegarde & reprise)
