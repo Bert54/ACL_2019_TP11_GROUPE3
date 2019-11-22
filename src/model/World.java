@@ -21,7 +21,7 @@ public class World implements Game {
         renderWindow = painter;
         this.controller = controller;
 
-        this.maze = new Maze(controller, renderWindow.getCamera(), renderWindow.getWidth(), renderWindow.getHeight());
+        this.maze = new Maze(controller, renderWindow.getCamera(), renderWindow.getWidth() + 200, renderWindow.getHeight() + 200);
         collisionResolver = new CollisionResolver();
 
         this.frame = f;
