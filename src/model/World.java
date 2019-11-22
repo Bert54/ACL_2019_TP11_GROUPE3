@@ -21,7 +21,7 @@ public class World implements Game {
         renderWindow = painter;
         this.controller = controller;
 
-        this.maze = new Maze(controller, renderWindow.getWidth(), renderWindow.getHeight());
+        this.maze = new Maze(controller, renderWindow.getCamera(), renderWindow.getWidth(), renderWindow.getHeight());
         collisionResolver = new CollisionResolver();
 
         this.frame = f;
@@ -69,7 +69,7 @@ public class World implements Game {
 
             Drawable drawable = new Drawable() {
                 @Override
-                public void draw(BufferedImage image) {
+                public void draw(BufferedImage image, Camera c) {
                     Graphics2D crayon = (Graphics2D) image.getGraphics();
                     crayon.setColor(Color.BLACK);
                     crayon.fillRect(0, 0, renderWindow.getWidth(), renderWindow.getHeight());

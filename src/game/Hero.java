@@ -5,8 +5,9 @@ import java.awt.image.BufferedImage;
 
 public class Hero extends GameEntity {
 
-    public Hero(Vec2 position, Vec2 box) {
+    public Hero(Camera camera, Vec2 position, Vec2 box) {
         super(position, box);
+        this.camera = camera;
     }
 
     public void update() {
@@ -22,7 +23,14 @@ public class Hero extends GameEntity {
         //System.exit(0);
     }
 
-    public void draw(BufferedImage image) {
+    public void applyMovement(CollisionResolver c) {
+        super.applyMovement(c);
+        //center the camera
+        camera.position.x = position.x - camera.scissor.x / 2;
+        camera.position.y = position.y - camera.scissor.y / 2;
+    }
+
+    public void draw(BufferedImage image, Camera camera) {
         Graphics2D crayon = (Graphics2D) image.getGraphics();
         if (this.invincibilityFrames > 0) {
             Color c = new Color(255, 0, 0, 130);
@@ -31,6 +39,8 @@ public class Hero extends GameEntity {
         else {
             crayon.setColor(Color.red);
         }
-        crayon.fillOval(position.x, position.y, box.x, box.y);
+        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
     }
+
+    private Camera camera;
 }

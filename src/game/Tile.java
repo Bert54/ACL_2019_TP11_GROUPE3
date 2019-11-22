@@ -22,7 +22,7 @@ public abstract class Tile implements Drawable {
 
     public abstract void onExit(GameEntity e);
 
-    public abstract void draw(BufferedImage image);
+    public abstract void draw(BufferedImage image, Camera camera);
 
     protected Vec2 position;
     protected Vec2 box;

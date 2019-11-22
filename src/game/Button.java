@@ -34,7 +34,7 @@ public class Button extends JPanel implements Drawable {
     }
 
     @Override
-    public void draw(BufferedImage image) {
+    public void draw(BufferedImage image, Camera camera) {
 
         Graphics2D crayon = (Graphics2D) image.getGraphics();
         crayon.setColor(Color.BLACK);

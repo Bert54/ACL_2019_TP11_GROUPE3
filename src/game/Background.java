@@ -15,7 +15,7 @@ public class Background implements Drawable{
     }
 
     @Override
-    public void draw(BufferedImage image) {
+    public void draw(BufferedImage image, Camera camera) {
 
         texture.draw(image, 0, 0, box.x, box.y);
     }

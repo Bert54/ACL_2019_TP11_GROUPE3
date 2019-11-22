@@ -7,8 +7,9 @@ public class EntityBuilder {
         this.controller = controller;
     }
 
-    public Hero buildHero(Vec2 pos, Vec2 box) {
-        Hero hero = new Hero(pos, new Vec2(box.x, box.y));
+    public Hero buildHero(Camera camera, Vec2 pos, Vec2 box) {
+        camera.position = new Vec2(pos);
+        Hero hero = new Hero(camera, pos, new Vec2(box.x, box.y));
         hero.setController(new HeroController(hero, controller));
         return hero;
     }

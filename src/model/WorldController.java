@@ -2,7 +2,6 @@ package model;
 
 import engine.Cmd;
 import engine.GameController;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.awt.event.KeyEvent;
 

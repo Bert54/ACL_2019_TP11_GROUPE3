@@ -33,11 +33,11 @@ public class GlueTile extends Tile {
     }
 
     @Override
-    public void draw(BufferedImage image) {
+    public void draw(BufferedImage image, Camera camera) {
 
         Graphics2D crayon = (Graphics2D) image.getGraphics();
         crayon.setColor(Color.darkGray);
-        crayon.fillOval(position.x, position.y, box.x, box.y);
+        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
 
     }
 }

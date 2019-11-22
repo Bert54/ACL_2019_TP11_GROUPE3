@@ -98,7 +98,7 @@ public abstract class GameEntity implements Drawable {
         return lose;
     }
 
-    public abstract void draw(BufferedImage image);
+    public abstract void draw(BufferedImage image, Camera camera);
 
     protected EntityController controller;
     protected Vec2 position;

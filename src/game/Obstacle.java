@@ -32,8 +32,8 @@ public class Obstacle extends Tile {
     }
 
     @Override
-    public void draw(BufferedImage image) {
-        texture.draw(image, position.x, position.y, box.x, box.y);
+    public void draw(BufferedImage image, Camera camera) {
+        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
     }
 
     private Texture texture;

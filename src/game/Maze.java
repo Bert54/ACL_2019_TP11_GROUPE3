@@ -13,7 +13,7 @@ public class Maze {
     private EntityBuilder builder;
     private List<GameEntity> entities;
 
-    public Maze(WorldController controller, int windowWidth, int windowHeight) {
+    public Maze(WorldController controller, Camera camera, int windowWidth, int windowHeight) {
         entities = new ArrayList<GameEntity>();
         tiles = new ArrayList<Tile>();
         builder = new EntityBuilder(controller);
@@ -46,7 +46,7 @@ public class Maze {
                     switch (decompose[0]){
                         case "Hero":
 
-                            entities.add(builder.buildHero(new Vec2(x, y), new Vec2(w,h)));
+                            entities.add(builder.buildHero(camera, new Vec2(x, y), new Vec2(w,h)));
                             break;
                         case "Monster":
 
