@@ -23,3 +23,20 @@
 * ajouter des effets au hero
 
 * ajouter de nouveaux types de monstres
+
+
+# sprint 3
+
+* construire un vrai labyrinthe
+
+* ajouter des objectifs secondaires (devoir collecter des objets par exemple)
+
+* ajouter des textures/sprites
+
+* ajouter un hud (points de vie, score, etc..)
+
+* ajouter bouton start/pause
+
+* ajouter la capacité de tir du héro
+
+* (si on a le temps: système sauvegarde & reprise)
