@@ -1,5 +1,6 @@
 package tests.entities;
 
+import game.Camera;
 import game.GameEntity;
 import game.Hero;
 import game.Vec2;
@@ -12,7 +13,7 @@ public class HeroTests {
     @Test
     void collectCoinNullTest() {
 
-        GameEntity hero = new Hero(new Vec2(10, 10), new Vec2(10, 10));
+        GameEntity hero = new Hero(new Camera(), new Vec2(10, 10), new Vec2(10, 10));
         assertDoesNotThrow( () -> {
             hero.collectCoin(null);
         });

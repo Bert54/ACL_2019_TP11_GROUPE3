@@ -6,7 +6,7 @@ On a réussi à faire toutes les fonctionnalités qui ont été prévues pour le
     placer un tresor et des cases a effets
     gerer l'affichage des textures
 
-Sprint retrospective :
+Sprint 1 retrospective :
 Le travail à bien été partagé ce qui a facilité le developpement de l'application
 On a du modifié un peu notre diagramme de classes
 
@@ -17,3 +17,6 @@ Décision pour le Sprint 2 :
     ajouter des effets au hero
     ajouter de nouveaux types de monstres
 
+Sprint 2 retrospective :
+Toutes les fonctionnalités n'ont pas été implémentées par manque de temps, il reste à
+faire le deltaTime et les nouveaux types de monstre.
