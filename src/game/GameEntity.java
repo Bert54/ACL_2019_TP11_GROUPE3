@@ -17,6 +17,7 @@ public abstract class GameEntity implements Drawable {
         this.invincibilityFrames = 0;
         this.slowedFrames = 0;
         this.speedFrames = 0;
+        this.isHit = false;
     }
 
     public abstract void update();
@@ -28,6 +29,7 @@ public abstract class GameEntity implements Drawable {
             if (this.invincibilityFrames <= 0 && this.previousHealth != 0) {
                 this.health = this.previousHealth;
                 this.previousHealth = 0;
+                this.isHit = false;
             }
         }
     }
@@ -55,13 +57,13 @@ public abstract class GameEntity implements Drawable {
             translation.y = translation.y / GLUEDIVIDESPEED;
             this.slowedFrames -= 1;
         }
-        nextPosition.x += (translation.x * 2);
-        nextPosition.y += (translation.y * 2);
+        nextPosition.x += (translation.x * 1.5);
+        nextPosition.y += (translation.y * 1.5);
     }
 
     public void moveTo(Vec2 pos) {
-        nextPosition.x += pos.x;
-        nextPosition.y += pos.y;
+        nextPosition.x = pos.x;
+        nextPosition.y = pos.y;
     }
 
     public Vec2 getPosition() {
@@ -80,6 +82,7 @@ public abstract class GameEntity implements Drawable {
         cancelMovement();
         if (this.invincibilityFrames <= 0) {
             --health;
+            this.isHit = true;
             this.invincibilityFrames = HITINVINCIBILITYFRAMES;
         }
     }
@@ -110,6 +113,7 @@ public abstract class GameEntity implements Drawable {
     protected int previousHealth;
     protected int health;
     protected int invincibilityFrames;
+    protected boolean isHit;
 
     protected int slowedFrames;
 

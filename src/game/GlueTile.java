@@ -1,14 +1,17 @@
 package game;
 
-import java.awt.*;
+import engine.Texture;
+
 import java.awt.image.BufferedImage;
 
 public class GlueTile extends Tile {
 
     public static final int GLUEFRAMESAM = 1;
+    private Texture texture;
 
     public GlueTile(Vec2 position, Vec2 box) {
         super(position, box);
+        texture = TextureFactory.get("glue.png");
     }
 
     @Override
@@ -35,9 +38,7 @@ public class GlueTile extends Tile {
     @Override
     public void draw(BufferedImage image, Camera camera) {
 
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.darkGray);
-        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
 
     }
 }

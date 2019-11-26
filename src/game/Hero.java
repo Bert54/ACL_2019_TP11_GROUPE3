@@ -1,12 +1,21 @@
 package game;
 
+import engine.Texture;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Hero extends GameEntity {
 
+    private Texture texture;
+    private Texture textureHit;
+    private Texture textureInv;
+
     public Hero(Camera camera, Vec2 position, Vec2 box) {
         super(position, box);
+        texture = TextureFactory.get("player.bmp");
+        textureHit = TextureFactory.get("player_hit.bmp");
+        textureInv = TextureFactory.get("player_inv.bmp");
         this.camera = camera;
     }
 
@@ -31,15 +40,15 @@ public class Hero extends GameEntity {
     }
 
     public void draw(BufferedImage image, Camera camera) {
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-        if (this.invincibilityFrames > 0) {
-            Color c = new Color(255, 0, 0, 130);
-            crayon.setColor(c);
+        if (this.isHit) {
+            textureHit.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        }
+        else if (this.invincibilityFrames > 0) {
+            textureInv.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
         }
         else {
-            crayon.setColor(Color.red);
+            texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
         }
-        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
     }
 
     private Camera camera;

@@ -1,5 +1,7 @@
 package game;
 
+import engine.Texture;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -7,9 +9,12 @@ public class SwiftTile extends Tile {
 
     public static final int SPEEDBONUSDURATION = 15;
 
+    private Texture texture;
+
     public SwiftTile(Vec2 position, Vec2 box) {
 
         super(position, box);
+        texture = TextureFactory.get("swift.jpg");
 
     }
 
@@ -38,9 +43,11 @@ public class SwiftTile extends Tile {
     @Override
     public void draw(BufferedImage image, Camera camera) {
 
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.cyan);
-        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        //Graphics2D crayon = (Graphics2D) image.getGraphics();
+        //crayon.setColor(Color.cyan);
+        //crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+
 
     }
 }

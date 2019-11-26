@@ -8,13 +8,15 @@ import exceptions.TeleportNegativeCoordinatesException;
 
 public class TeleportTile extends Tile {
 
+    private Texture texture;
+
     public TeleportTile(Vec2 position, Vec2 box, Vec2 exit) {
         super(position, box);
 
         if (exit.x < 0 || exit.y < 0) {
             throw new TeleportNegativeCoordinatesException();
         }
-
+        texture = TextureFactory.get("teleport.png");
         this.exit = exit;
     }
 
@@ -39,9 +41,7 @@ public class TeleportTile extends Tile {
 
     @Override
     public void draw(BufferedImage image, Camera camera) {
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.pink);
-        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
     }
 
     private Vec2 exit;

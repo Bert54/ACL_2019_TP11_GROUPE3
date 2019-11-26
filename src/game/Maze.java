@@ -1,5 +1,6 @@
 package game;
 
+import exceptions.NoHeroException;
 import model.WorldController;
 
 import java.io.*;
@@ -22,7 +23,10 @@ public class Maze {
         String chemin = "res/Maze.txt";
         File file = new File(chemin);
 
-        if (file.exists() && file.isFile()){
+        int teleportDestX = -1;
+        int teleportDestY = -1;
+
+        if (file.exists() && file.isFile()) {
 
             try {
 
@@ -30,10 +34,37 @@ public class Maze {
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
 
                 String line;
+                int x = 0;
+                int y = 0;
 
-                while((line = bufferedReader.readLine()) != null){
+                //tiles.add(tileBuilder.buildObstacle(new Vec2(0, 0), new Vec2(windowWidth, 10)));
+                //tiles.add(tileBuilder.buildObstacle(new Vec2(0, 0), new Vec2(10, windowHeight)));
+                //tiles.add(tileBuilder.buildObstacle(new Vec2(windowHeight-10, 0), new Vec2(10, windowHeight)));
+                //tiles.add(tileBuilder.buildObstacle(new Vec2(0, windowWidth-10), new Vec2(windowWidth, 10)));
 
-                    String[] decompose = line.split(" ");
+                while ((line = bufferedReader.readLine()) != null) {
+
+                    x = 0;
+
+                    for (int i = 0; i < line.length(); i++) {
+
+                        switch (line.charAt(i)) {
+                            case 'D':
+                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                teleportDestX = x;
+                                teleportDestY = y;
+                                break;
+                        }
+
+                        x += 50;
+
+                    }
+
+                    y += 50;
+
+
+
+                    /*String[] decompose = line.split(" ");
 
                     String[] coordinates = decompose[1].split(",");
                     int x = Integer.parseInt(coordinates[0]);
@@ -100,14 +131,94 @@ public class Maze {
 
                             tiles.add(tileBuilder.buildObstacle(new Vec2(x, windowHeight - y), new Vec2(windowWidth, h)));
                             break;
-                    }
+                    }*/
                 }
 
-            }catch (FileNotFoundException e){
+
+            } catch (FileNotFoundException e) {
 
                 e.printStackTrace();
-            }catch (IOException e){
+            } catch (IOException e) {
 
+                e.printStackTrace();
+            }
+
+            try {
+                FileReader fileReader = new FileReader(chemin);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+                String line;
+                int x = 0;
+                int y = 0;
+                boolean hasHero = false;
+
+                while ((line = bufferedReader.readLine()) != null) {
+
+                    x = 0;
+
+                    for (int i = 0; i < line.length(); i++) {
+                        switch (line.charAt(i)) {
+                            case '*':
+                                tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            case 'H':
+                                if (!hasHero) {
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    entities.add(builder.buildHero(camera, new Vec2(x, y), new Vec2(20, 20)));
+                                    hasHero = true;
+                                }
+                                break;
+                            case 'C':
+                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                tiles.add(tileBuilder.buildCoin(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            case 'L':
+                                tiles.add(tileBuilder.buildLavaTile(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            case 'G':
+                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                tiles.add(tileBuilder.buildGlueTile(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            case 'T':
+                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                tiles.add(tileBuilder.buildTeleportTile(new Vec2(x,y), new Vec2(50, 50), new Vec2(teleportDestX, teleportDestY)));
+                                break;
+                            case 'S':
+                                tiles.add(tileBuilder.buildSpeedTile(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            case 'I':
+                                tiles.add(tileBuilder.buildInvTile(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            case '+':
+                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                entities.add(builder.buildMonster(new Vec2(x, y), new Vec2(30,30)));
+                                break;
+                            case '-':
+                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                break;
+                            default:
+
+                        }
+
+                        x += 50;
+
+                    }
+
+                    y += 50;
+
+                }
+
+                if (!hasHero) {
+                    throw new NoHeroException();
+                }
+
+            } catch (FileNotFoundException e) {
+
+                e.printStackTrace();
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            } catch (NoHeroException e) {
                 e.printStackTrace();
             }
         }

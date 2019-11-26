@@ -1,5 +1,7 @@
 package game;
 
+import engine.Texture;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -8,8 +10,11 @@ public class LavaTile extends Tile {
     public static final int LAVADAMAGE = 1;
     public static final int LAVAINVINCIBILITY = 30;
 
+    private Texture texture;
+
     public LavaTile(Vec2 position, Vec2 box) {
         super(position, box);
+        texture = TextureFactory.get("lava.jpg");
     }
 
     @Override
@@ -18,6 +23,7 @@ public class LavaTile extends Tile {
             if (e.invincibilityFrames <= 0) {
                 e.health -= LAVADAMAGE;
                 e.onSpecialTile = true;
+                e.isHit = true;
                 e.invincibilityFrames = LAVAINVINCIBILITY;
             }
         }
@@ -29,6 +35,7 @@ public class LavaTile extends Tile {
             if (e.invincibilityFrames <= 0) {
                 e.health -= LAVADAMAGE;
                 e.invincibilityFrames = LAVAINVINCIBILITY;
+                e.isHit = true;
             }
         }
     }
@@ -41,8 +48,6 @@ public class LavaTile extends Tile {
 
     @Override
     public void draw(BufferedImage image, Camera camera) {
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-        crayon.setColor(Color.red);
-        crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
     }
 }

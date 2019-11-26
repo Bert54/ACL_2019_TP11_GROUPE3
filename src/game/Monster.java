@@ -1,11 +1,17 @@
 package game;
 
+import engine.Texture;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Monster extends GameEntity {
+
+    private Texture texture;
+
     public Monster(Vec2 position, Vec2 box) {
         super(position, box);
+        texture = TextureFactory.get("monster_basic.png");
     }
 
     public void update() {
@@ -17,8 +23,8 @@ public class Monster extends GameEntity {
     }
 
     public void draw(BufferedImage image, Camera camera) {
-        Graphics2D crayon = (Graphics2D) image.getGraphics();
-		crayon.setColor(Color.blue);
-		crayon.fillOval(position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+
+        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+
     }
 }

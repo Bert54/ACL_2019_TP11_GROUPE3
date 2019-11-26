@@ -29,4 +29,8 @@ public class TileBuilder {
         return new InvincibilityTile(location, area);
     }
 
+    RegularTile buildRegularTile(Vec2 location, Vec2 area) {
+        return new RegularTile(location, area);
+    }
+
 }
