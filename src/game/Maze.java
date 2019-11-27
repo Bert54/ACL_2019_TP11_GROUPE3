@@ -15,52 +15,56 @@ public class Maze {
     private List<GameEntity> entities;
 
     public Maze(WorldController controller, Camera camera, int windowWidth, int windowHeight) {
-        entities = new ArrayList<GameEntity>();
-        tiles = new ArrayList<Tile>();
-        builder = new EntityBuilder(controller);
-        tileBuilder = new TileBuilder();
+        if (controller == null | camera == null) {
+            throw new RuntimeException();
+        }
+        else {
+            entities = new ArrayList<GameEntity>();
+            tiles = new ArrayList<Tile>();
+            builder = new EntityBuilder(controller);
+            tileBuilder = new TileBuilder();
 
-        String chemin = "res/Maze.txt";
-        File file = new File(chemin);
+            String chemin = "res/Maze.txt";
+            File file = new File(chemin);
 
-        int teleportDestX = -1;
-        int teleportDestY = -1;
+            int teleportDestX = -1;
+            int teleportDestY = -1;
 
-        if (file.exists() && file.isFile()) {
+            if (file.exists() && file.isFile()) {
 
-            try {
+                try {
 
-                FileReader fileReader = new FileReader(chemin);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    FileReader fileReader = new FileReader(chemin);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-                String line;
-                int x = 0;
-                int y = 0;
+                    String line;
+                    int x = 0;
+                    int y = 0;
 
-                //tiles.add(tileBuilder.buildObstacle(new Vec2(0, 0), new Vec2(windowWidth, 10)));
-                //tiles.add(tileBuilder.buildObstacle(new Vec2(0, 0), new Vec2(10, windowHeight)));
-                //tiles.add(tileBuilder.buildObstacle(new Vec2(windowHeight-10, 0), new Vec2(10, windowHeight)));
-                //tiles.add(tileBuilder.buildObstacle(new Vec2(0, windowWidth-10), new Vec2(windowWidth, 10)));
+                    //tiles.add(tileBuilder.buildObstacle(new Vec2(0, 0), new Vec2(windowWidth, 10)));
+                    //tiles.add(tileBuilder.buildObstacle(new Vec2(0, 0), new Vec2(10, windowHeight)));
+                    //tiles.add(tileBuilder.buildObstacle(new Vec2(windowHeight-10, 0), new Vec2(10, windowHeight)));
+                    //tiles.add(tileBuilder.buildObstacle(new Vec2(0, windowWidth-10), new Vec2(windowWidth, 10)));
 
-                while ((line = bufferedReader.readLine()) != null) {
+                    while ((line = bufferedReader.readLine()) != null) {
 
-                    x = 0;
+                        x = 0;
 
-                    for (int i = 0; i < line.length(); i++) {
+                        for (int i = 0; i < line.length(); i++) {
 
-                        switch (line.charAt(i)) {
-                            case 'D':
-                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                teleportDestX = x;
-                                teleportDestY = y;
-                                break;
+                            switch (line.charAt(i)) {
+                                case 'D':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    teleportDestX = x;
+                                    teleportDestY = y;
+                                    break;
+                            }
+
+                            x += 50;
+
                         }
 
-                        x += 50;
-
-                    }
-
-                    y += 50;
+                        y += 50;
 
 
 
@@ -132,94 +136,95 @@ public class Maze {
                             tiles.add(tileBuilder.buildObstacle(new Vec2(x, windowHeight - y), new Vec2(windowWidth, h)));
                             break;
                     }*/
+                    }
+
+
+                } catch (FileNotFoundException e) {
+
+                    e.printStackTrace();
+                } catch (IOException e) {
+
+                    e.printStackTrace();
                 }
 
+                try {
+                    FileReader fileReader = new FileReader(chemin);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            } catch (FileNotFoundException e) {
+                    String line;
+                    int x = 0;
+                    int y = 0;
+                    boolean hasHero = false;
 
-                e.printStackTrace();
-            } catch (IOException e) {
+                    while ((line = bufferedReader.readLine()) != null) {
 
-                e.printStackTrace();
-            }
+                        x = 0;
 
-            try {
-                FileReader fileReader = new FileReader(chemin);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-                String line;
-                int x = 0;
-                int y = 0;
-                boolean hasHero = false;
-
-                while ((line = bufferedReader.readLine()) != null) {
-
-                    x = 0;
-
-                    for (int i = 0; i < line.length(); i++) {
-                        switch (line.charAt(i)) {
-                            case '*':
-                                tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            case 'H':
-                                if (!hasHero) {
+                        for (int i = 0; i < line.length(); i++) {
+                            switch (line.charAt(i)) {
+                                case '*':
+                                    tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case 'H':
+                                    if (!hasHero) {
+                                        tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                        entities.add(builder.buildHero(camera, new Vec2(x, y), new Vec2(20, 20)));
+                                        hasHero = true;
+                                    }
+                                    break;
+                                case 'C':
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                    entities.add(builder.buildHero(camera, new Vec2(x, y), new Vec2(20, 20)));
-                                    hasHero = true;
-                                }
-                                break;
-                            case 'C':
-                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                tiles.add(tileBuilder.buildCoin(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            case 'L':
-                                tiles.add(tileBuilder.buildLavaTile(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            case 'G':
-                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                tiles.add(tileBuilder.buildGlueTile(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            case 'T':
-                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                tiles.add(tileBuilder.buildTeleportTile(new Vec2(x,y), new Vec2(50, 50), new Vec2(teleportDestX, teleportDestY)));
-                                break;
-                            case 'S':
-                                tiles.add(tileBuilder.buildSpeedTile(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            case 'I':
-                                tiles.add(tileBuilder.buildInvTile(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            case '+':
-                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                entities.add(builder.buildMonster(new Vec2(x, y), new Vec2(30,30)));
-                                break;
-                            case '-':
-                                tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                break;
-                            default:
+                                    tiles.add(tileBuilder.buildCoin(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case 'L':
+                                    tiles.add(tileBuilder.buildLavaTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case 'G':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    tiles.add(tileBuilder.buildGlueTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case 'T':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    tiles.add(tileBuilder.buildTeleportTile(new Vec2(x, y), new Vec2(50, 50), new Vec2(teleportDestX, teleportDestY)));
+                                    break;
+                                case 'S':
+                                    tiles.add(tileBuilder.buildSpeedTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case 'I':
+                                    tiles.add(tileBuilder.buildInvTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case '+':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    entities.add(builder.buildMonster(new Vec2(x, y), new Vec2(30, 30)));
+                                    break;
+                                case '-':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                default:
+
+                            }
+
+                            x += 50;
 
                         }
 
-                        x += 50;
+                        y += 50;
 
                     }
 
-                    y += 50;
+                    if (!hasHero) {
+                        throw new NoHeroException();
+                    }
 
+                } catch (FileNotFoundException e) {
+
+                    e.printStackTrace();
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                } catch (NoHeroException e) {
+                    e.printStackTrace();
                 }
-
-                if (!hasHero) {
-                    throw new NoHeroException();
-                }
-
-            } catch (FileNotFoundException e) {
-
-                e.printStackTrace();
-            } catch (IOException e) {
-
-                e.printStackTrace();
-            } catch (NoHeroException e) {
-                e.printStackTrace();
             }
         }
     }
