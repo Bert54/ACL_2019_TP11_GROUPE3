@@ -7,8 +7,10 @@ import controllers.StartGameMouseController;
 import engine.Game;
 
 import engine.Texture;
-import game.*;
-import game.Button;
+import game.level.*;
+import game.entities.GameEntity;
+import game.level.Button;
+import game.tiles.Tile;
 
 import javax.swing.*;
 import java.awt.*;

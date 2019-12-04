@@ -1,4 +1,7 @@
-package game;
+package game.level;
+
+import game.entities.GameEntity;
+import game.tiles.Tile;
 
 import java.util.List;
 

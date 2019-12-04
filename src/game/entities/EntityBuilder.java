@@ -1,5 +1,7 @@
-package game;
+package game.entities;
 
+import game.level.Camera;
+import game.level.Vec2;
 import model.WorldController;
 
 public class EntityBuilder {

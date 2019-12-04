@@ -1,8 +1,8 @@
 package tests.tiles;
 
-import game.SwiftTile;
-import game.Tile;
-import game.Vec2;
+import game.tiles.SwiftTile;
+import game.tiles.Tile;
+import game.level.Vec2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

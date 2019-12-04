@@ -1,9 +1,9 @@
 package tests.entities;
 
-import game.Camera;
-import game.GameEntity;
-import game.Hero;
-import game.Vec2;
+import game.level.Camera;
+import game.entities.GameEntity;
+import game.entities.Hero;
+import game.level.Vec2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

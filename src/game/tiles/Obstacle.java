@@ -1,41 +1,36 @@
-package game;
+package game.tiles;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import engine.Texture;
-import exceptions.TeleportNegativeCoordinatesException;
+import game.level.Camera;
+import game.level.TextureFactory;
+import game.level.Vec2;
+import game.entities.GameEntity;
 
-public class TeleportTile extends Tile {
+public class Obstacle extends Tile {
 
-    private Texture texture;
-
-    public TeleportTile(Vec2 position, Vec2 box, Vec2 exit) {
+    public Obstacle(Vec2 position, Vec2 box) {
         super(position, box);
-
-        if (exit.x < 0 || exit.y < 0) {
-            throw new TeleportNegativeCoordinatesException();
-        }
-        texture = TextureFactory.get("teleport.png");
-        this.exit = exit;
+        texture = TextureFactory.get("box.bmp");
     }
 
     public void onEnter(GameEntity e) {
         if (e != null) {
-            e.moveTo(exit);
+            e.cancelMovement();
         }
     }
 
     @Override
     public void onTile(GameEntity e) {
         if (e != null) {
-            // stub
+            //stub
         }
     }
 
     public void onExit(GameEntity e) {
         if (e != null) {
-            e.onSpecialTile = false;
+            //stub
         }
     }
 
@@ -44,5 +39,5 @@ public class TeleportTile extends Tile {
         texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
     }
 
-    private Vec2 exit;
+    private Texture texture;
 }

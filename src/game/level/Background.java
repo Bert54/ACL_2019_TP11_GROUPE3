@@ -1,10 +1,10 @@
-package game;
+package game.level;
 
 import engine.Texture;
 
 import java.awt.image.BufferedImage;
 
-public class Background implements Drawable{
+public class Background implements Drawable {
 
     private Texture texture;
     private Vec2 box;

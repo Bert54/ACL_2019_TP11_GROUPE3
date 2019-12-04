@@ -1,6 +1,4 @@
-package game;
-
-import java.util.Objects;
+package game.level;
 
 public class Vec2 {
     public Vec2() {
