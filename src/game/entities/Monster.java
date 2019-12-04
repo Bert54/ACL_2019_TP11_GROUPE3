@@ -1,8 +1,11 @@
-package game;
+package game.entities;
 
 import engine.Texture;
+import game.level.Camera;
+import game.tiles.Coin;
+import game.level.TextureFactory;
+import game.level.Vec2;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Monster extends GameEntity {

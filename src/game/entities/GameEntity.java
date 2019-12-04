@@ -1,6 +1,11 @@
-package game;
+package game.entities;
 
-import java.awt.*;
+import game.level.Camera;
+import game.level.CollisionResolver;
+import game.level.Drawable;
+import game.level.Vec2;
+import game.tiles.Coin;
+
 import java.awt.image.BufferedImage;
 
 public abstract class GameEntity implements Drawable {
@@ -24,7 +29,7 @@ public abstract class GameEntity implements Drawable {
     
     public void applyMovement(CollisionResolver collisionResolver) {
         position = new Vec2(nextPosition);
-        if (this.invincibilityFrames > 0) {
+        if (this.invincibilityFrames > 0 ) {
             this.invincibilityFrames -= 1;
             if (this.invincibilityFrames <= 0 && this.previousHealth != 0) {
                 this.health = this.previousHealth;
@@ -97,8 +102,40 @@ public abstract class GameEntity implements Drawable {
         return health;
     }
 
+    public int getInvincibilityFrames() {
+        return this.invincibilityFrames;
+    }
+
     public boolean isLose() {
         return lose;
+    }
+
+    public void setSlowedFrames(int sf) {
+        this.slowedFrames = sf;
+    }
+
+    public void setSpeedFrames(int sf) {
+        this.speedFrames = sf;
+    }
+
+    public void setInvincibilityFrames(int ifs) {
+        this.invincibilityFrames = ifs;
+    }
+
+    public void setOnSpecialTile(boolean onST) {
+        this.onSpecialTile = onST;
+    }
+
+    public void setIsHit(boolean hit) {
+        this.isHit = hit;
+    }
+
+    public void setHealth(int nh) {
+        this.health = nh;
+    }
+
+    public void setPreviousHealth(int ph) {
+        this.previousHealth = ph;
     }
 
     public abstract void draw(BufferedImage image, Camera camera);
@@ -108,7 +145,7 @@ public abstract class GameEntity implements Drawable {
     protected Vec2 nextPosition;
     protected Vec2 box;
 
-    protected boolean onSpecialTile;
+    public boolean onSpecialTile;
 
     protected int previousHealth;
     protected int health;

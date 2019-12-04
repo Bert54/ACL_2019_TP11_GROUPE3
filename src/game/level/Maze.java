@@ -1,6 +1,10 @@
-package game;
+package game.level;
 
 import exceptions.NoHeroException;
+import game.entities.EntityBuilder;
+import game.entities.GameEntity;
+import game.tiles.Tile;
+import game.tiles.TileBuilder;
 import model.WorldController;
 
 import java.io.*;

@@ -1,6 +1,10 @@
-package game;
+package game.tiles;
 
 import engine.Texture;
+import game.level.Camera;
+import game.entities.GameEntity;
+import game.level.TextureFactory;
+import game.level.Vec2;
 
 import java.awt.image.BufferedImage;
 
@@ -17,21 +21,21 @@ public class GlueTile extends Tile {
     @Override
     public void onEnter(GameEntity e) {
         if (e != null) {
-            e.slowedFrames = GLUEFRAMESAM;
-            e.onSpecialTile = true;
+            e.setSlowedFrames(GLUEFRAMESAM);
+            e.setOnSpecialTile(true);
         }
     }
 
     @Override
     public void onTile(GameEntity e) {
         if (e != null) {
-            e.slowedFrames = GLUEFRAMESAM;
+            e.setSlowedFrames(GLUEFRAMESAM);
         }
     }
 
     public void onExit(GameEntity e) {
         if (e != null) {
-            e.onSpecialTile = false;
+            e.setOnSpecialTile(false);
         }
     }
 

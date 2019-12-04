@@ -1,8 +1,8 @@
 package tests.tiles;
 
-import game.InvincibilityTile;
-import game.Tile;
-import game.Vec2;
+import game.tiles.InvincibilityTile;
+import game.tiles.Tile;
+import game.level.Vec2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

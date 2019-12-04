@@ -1,6 +1,10 @@
-package game;
+package game.tiles;
 
 import engine.Texture;
+import game.level.Camera;
+import game.entities.GameEntity;
+import game.level.TextureFactory;
+import game.level.Vec2;
 
 import java.awt.image.BufferedImage;
 

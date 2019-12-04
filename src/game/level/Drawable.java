@@ -1,6 +1,7 @@
-package game;
+package game.level;
 
-import java.awt.*;
+import game.level.Camera;
+
 import java.awt.image.BufferedImage;
     
 public interface Drawable {

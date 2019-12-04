@@ -1,10 +1,10 @@
 package start;
 
 import engine.GameEngineGraphical;
+import game.level.Camera;
 import model.*;
-import game.*;
+
 import javax.swing.*;
-import java.awt.im.InputContext;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {

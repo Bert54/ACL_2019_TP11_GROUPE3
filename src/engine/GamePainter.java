@@ -1,6 +1,6 @@
 package engine;
 
-import game.Drawable;
+import game.level.Drawable;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;

@@ -1,4 +1,6 @@
-package game;
+package game.entities;
+
+import game.level.Vec2;
 
 import java.util.Random;
 

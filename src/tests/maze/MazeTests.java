@@ -1,6 +1,6 @@
 package tests.maze;
 
-import game.Maze;
+import game.level.Maze;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

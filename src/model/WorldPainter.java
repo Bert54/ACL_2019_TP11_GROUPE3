@@ -2,8 +2,8 @@ package model;
 
 import engine.GamePainter;
 
-import game.Drawable;
-import game.Camera;
+import game.level.Drawable;
+import game.level.Camera;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +32,11 @@ public class WorldPainter implements GamePainter {
 
     @Override
     public void draw(BufferedImage image) {
+
+        Graphics2D crayon = (Graphics2D) image.getGraphics();
+        crayon.setColor(Color.cyan);
+        crayon.fillRect(0, 0, WIDTH, HEIGHT);
+
         if(camera.position.x  < 0) {
             camera.position.x = 0;
         }

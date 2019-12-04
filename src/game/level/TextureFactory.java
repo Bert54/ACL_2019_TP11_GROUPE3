@@ -1,4 +1,4 @@
-package game;
+package game.level;
 
 import engine.Texture;
 

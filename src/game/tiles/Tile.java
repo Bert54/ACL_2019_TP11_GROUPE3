@@ -1,4 +1,9 @@
-package game;
+package game.tiles;
+
+import game.level.Camera;
+import game.level.Drawable;
+import game.entities.GameEntity;
+import game.level.Vec2;
 
 import java.awt.image.BufferedImage;
 

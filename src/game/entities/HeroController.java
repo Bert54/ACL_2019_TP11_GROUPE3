@@ -1,7 +1,8 @@
-package game;
+package game.entities;
 
 import engine.Cmd;
 
+import game.level.Vec2;
 import model.WorldController;
 import java.util.List;
 

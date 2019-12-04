@@ -1,8 +1,12 @@
-package game;
+package game.entities;
 
 import engine.Texture;
+import game.level.Camera;
+import game.level.CollisionResolver;
+import game.level.TextureFactory;
+import game.level.Vec2;
+import game.tiles.Coin;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Hero extends GameEntity {

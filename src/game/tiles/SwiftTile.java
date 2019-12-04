@@ -1,8 +1,11 @@
-package game;
+package game.tiles;
 
 import engine.Texture;
+import game.level.Camera;
+import game.entities.GameEntity;
+import game.level.TextureFactory;
+import game.level.Vec2;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class SwiftTile extends Tile {
@@ -21,22 +24,22 @@ public class SwiftTile extends Tile {
     @Override
     public void onEnter(GameEntity e) {
         if (e != null) {
-            e.speedFrames = SPEEDBONUSDURATION;
-            e.onSpecialTile = true;
+            e.setSpeedFrames(SPEEDBONUSDURATION);
+            e.setOnSpecialTile(true);
         }
     }
 
     @Override
     public void onTile(GameEntity e) {
         if (e != null) {
-            e.speedFrames = SPEEDBONUSDURATION;
+            e.setSpeedFrames(SPEEDBONUSDURATION);
         }
 
     }
 
     public void onExit(GameEntity e) {
         if (e != null) {
-            e.onSpecialTile = false;
+            e.setOnSpecialTile(false);
         }
     }
 

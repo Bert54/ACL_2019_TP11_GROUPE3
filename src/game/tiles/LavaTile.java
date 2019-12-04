@@ -1,8 +1,11 @@
-package game;
+package game.tiles;
 
 import engine.Texture;
+import game.level.Camera;
+import game.entities.GameEntity;
+import game.level.TextureFactory;
+import game.level.Vec2;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class LavaTile extends Tile {
@@ -20,11 +23,11 @@ public class LavaTile extends Tile {
     @Override
     public void onEnter(GameEntity e) {
         if (e != null) {
-            if (e.invincibilityFrames <= 0) {
-                e.health -= LAVADAMAGE;
-                e.onSpecialTile = true;
-                e.isHit = true;
-                e.invincibilityFrames = LAVAINVINCIBILITY;
+            if (e.getInvincibilityFrames() <= 0) {
+                e.setHealth(e.getHealth() - LAVADAMAGE);
+                e.setOnSpecialTile(true);
+                e.setIsHit(true);
+                e.setInvincibilityFrames(LAVAINVINCIBILITY);
             }
         }
     }
@@ -32,17 +35,17 @@ public class LavaTile extends Tile {
     @Override
     public void onTile(GameEntity e) {
         if (e != null) {
-            if (e.invincibilityFrames <= 0) {
-                e.health -= LAVADAMAGE;
-                e.invincibilityFrames = LAVAINVINCIBILITY;
-                e.isHit = true;
+            if (e.getInvincibilityFrames() <= 0) {
+                e.setHealth(e.getHealth() - LAVADAMAGE);
+                e.setInvincibilityFrames(LAVAINVINCIBILITY);
+                e.setIsHit(true);
             }
         }
     }
 
     public void onExit(GameEntity e) {
         if (e != null) {
-            e.onSpecialTile = false;
+            e.setOnSpecialTile(false);
         }
     }
 
