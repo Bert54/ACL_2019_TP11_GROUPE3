@@ -3,11 +3,13 @@ package game.entities;
 import engine.Cmd;
 
 import game.level.Vec2;
+import game.level.Maze;
 import model.WorldController;
 import java.util.List;
 
 public class HeroController implements EntityController {
-    public HeroController(Hero hero, WorldController controller) {
+    public HeroController(Maze maze, Hero hero, WorldController controller) {
+        this.maze = maze;
         this.hero = hero;
         this.controller = controller;
     }
@@ -18,22 +20,26 @@ public class HeroController implements EntityController {
             Cmd command =  commands.get(i);
             switch(command) {
                 case RIGHT:
-                    hero.move(new Vec2(5, 0));
+                    hero.move(new Vec2(1, 0));
                     break;
                 case UP:
-                    hero.move(new Vec2(0, -5));
+                    hero.move(new Vec2(0, -1));
                     break;
                 case LEFT:
-                    hero.move(new Vec2(-5, 0));
+                    hero.move(new Vec2(-1, 0));
                     break;
                 case DOWN:
-                    hero.move(new Vec2(0, 5));
+                    hero.move(new Vec2(0, 1));
+                    break;
+                case SHOOT:
+                    maze.spawnProjectile(hero);
                     break;
             }
-            controller.clearCommands();
         }
+        controller.clearCommands();
     }
 
     private Hero hero;
     private WorldController controller;
+    private Maze maze;
 }

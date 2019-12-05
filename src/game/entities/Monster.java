@@ -21,13 +21,19 @@ public class Monster extends GameEntity {
         controller.onUpdate();
     }
 
+    public void onHit(GameEntity e) {
+        cancelMovement();
+        super.onHit(e);
+        if(health <= 0) {
+            disposable = true;
+        }
+    }
+
     public void collectCoin(Coin c) {
         cancelMovement();
     }
 
     public void draw(BufferedImage image, Camera camera) {
-
         texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
-
     }
 }

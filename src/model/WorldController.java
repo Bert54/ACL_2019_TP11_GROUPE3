@@ -4,9 +4,14 @@ import engine.Cmd;
 import engine.GameController;
 
 import java.awt.event.KeyEvent;
-
+import java.awt.event.MouseEvent;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.util.List;
 import java.util.ArrayList;
+
+import game.level.Vec2;
 
 public class WorldController implements GameController {
     public WorldController() {
@@ -58,6 +63,32 @@ public class WorldController implements GameController {
         }
     }
 
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        commandBuffer.add(Cmd.SHOOT);
+    }
+
+    public Vec2 getDirection() {
+        Point p = MouseInfo.getPointerInfo().getLocation();
+        return new Vec2(p.x, p.y);
+    }
+
     public boolean isStart() {
         return start;
     }
@@ -75,6 +106,10 @@ public class WorldController implements GameController {
     public void setInstruction(boolean status) {
 
         this.instruction = status;
+
+    }
+
+    public void spawnProjectile() {
 
     }
 

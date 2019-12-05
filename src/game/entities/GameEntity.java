@@ -83,8 +83,7 @@ public abstract class GameEntity implements Drawable {
         return box;
     }
 
-    public void onHit() {
-        cancelMovement();
+    public void onHit(GameEntity e) {
         if (this.invincibilityFrames <= 0) {
             --health;
             this.isHit = true;
@@ -138,6 +137,10 @@ public abstract class GameEntity implements Drawable {
         this.previousHealth = ph;
     }
 
+    public boolean isDisposable() {
+        return disposable;
+    }
+
     public abstract void draw(BufferedImage image, Camera camera);
 
     protected EntityController controller;
@@ -158,4 +161,6 @@ public abstract class GameEntity implements Drawable {
   
     protected boolean win;
     protected boolean lose;
+
+    protected boolean disposable;
 }

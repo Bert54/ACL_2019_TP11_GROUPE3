@@ -3,6 +3,7 @@ package game.level;
 import exceptions.NoHeroException;
 import game.entities.EntityBuilder;
 import game.entities.GameEntity;
+import game.entities.Projectile;
 import game.tiles.Tile;
 import game.tiles.TileBuilder;
 import model.WorldController;
@@ -10,6 +11,7 @@ import model.WorldController;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 public class Maze {
 
@@ -17,16 +19,20 @@ public class Maze {
     private List<Tile> tiles;
     private EntityBuilder builder;
     private List<GameEntity> entities;
+    private List<GameEntity> pending;
 
     public Maze(WorldController controller, Camera camera, int windowWidth, int windowHeight) {
         if (controller == null | camera == null) {
             throw new RuntimeException();
         }
         else {
+            this.controller = controller;
             entities = new ArrayList<GameEntity>();
+            pending = new ArrayList<GameEntity>();
             tiles = new ArrayList<Tile>();
-            builder = new EntityBuilder(controller);
             tileBuilder = new TileBuilder();
+            //ugly
+            builder = new EntityBuilder(this, controller);
 
             String chemin = "res/Maze.txt";
             File file = new File(chemin);
@@ -233,6 +239,34 @@ public class Maze {
         }
     }
 
+    public void cleanup() {
+        Iterator<GameEntity> it = entities.iterator();
+        while(it.hasNext()) {
+            GameEntity e = it.next();
+            if(e.isDisposable()) {
+                it.remove();
+            }
+        }
+        for(GameEntity e : pending) {
+            entities.add(e);
+        }
+        pending.clear();
+    }
+
+    public  void spawnProjectile(GameEntity entity) {
+        Vec2 direction = new Vec2(entity.getNextPosition());
+        direction.x -= entity.getPosition().x + 1;
+        direction.y -= entity.getPosition().y + 1;
+        /*direction.x = entity.getPosition().x - controller.getDirection().x;
+        direction.y = entity.getPosition().y - controller.getDirection().y;
+        //direction.normalize();
+        */
+        Vec2 position = new Vec2(entity.getPosition());
+        position.x += 5;
+        position.y += 5;
+        pending.add(new Projectile(entity, position, entity.getBox(), direction));
+    }
+
     public List<Tile> getTiles() {
         return tiles;
     }
@@ -240,4 +274,6 @@ public class Maze {
     public List<GameEntity> getEntities() {
         return entities;
     }
+
+    private WorldController controller;
 }

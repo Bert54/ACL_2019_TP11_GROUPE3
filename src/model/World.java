@@ -100,7 +100,8 @@ public class World implements Game {
             renderWindow.submit(retour);
 
         }else if (controller.isStart()){
-
+            maze.cleanup();
+            
             for (Tile t : maze.getTiles()) {
                 renderWindow.submit(t);
             }
