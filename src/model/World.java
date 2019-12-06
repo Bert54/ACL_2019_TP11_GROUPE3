@@ -1,9 +1,6 @@
 package model;
 
-import controllers.ExitAppMouseController;
-import controllers.InstructionMouseController;
-import controllers.RetourMouseController;
-import controllers.StartGameMouseController;
+import controllers.*;
 import engine.Game;
 
 import engine.Texture;
@@ -44,6 +41,10 @@ public class World implements Game {
         Button instruction = new Button();
         Button quitter = new Button();
         Button retour = new Button();
+        Button pause = new Button();
+        Button play = new Button();
+
+        HealthBar healthBar = new HealthBar();
 
         if (!controller.isStart() && !controller.isInstruction()) {
 
@@ -106,16 +107,42 @@ public class World implements Game {
                 renderWindow.submit(t);
             }
 
-            for (GameEntity e : maze.getEntities()) {
-                e.update();
+            if (!this.controller.isPause()) {
+
+                for (GameEntity e : maze.getEntities()) {
+                    e.update();
+                }
             }
 
             collisionResolver.resolve(maze.getEntities(), maze.getTiles());
 
             for (GameEntity e : maze.getEntities()) {
+
+                if (e.getClass().getSimpleName().equals("Hero")){
+
+                    if (e.getHealth() <= GameEntity.getHEALTHMAX()) {
+
+                        healthBar.setHealthBarWidth((e.getHealth() * healthBar.getWidth()) / GameEntity.getHEALTHMAX());
+                    }
+                    healthBar.setText(e.getHealth() + "");
+                    renderWindow.submit(healthBar);
+                }
+
                 e.applyMovement(collisionResolver);
                 renderWindow.submit(e);
             }
+
+            pause.setButton("Pause", new Vec2(0, renderWindow.getHeight() - (Hsquare * 2)), new Vec2(Wsquare, Hsquare), this.frame);
+            play.setButton("Play", new Vec2(renderWindow.getWidth() - Wsquare, renderWindow.getHeight() - (Hsquare * 2)), new Vec2(Wsquare, Hsquare), this.frame);
+
+            PlayMouseController playMouseController = new PlayMouseController(this.controller);
+            PauseMouseController pauseMouseController = new PauseMouseController(this.controller);
+
+            pause.addMouseListener(pauseMouseController);
+            play.addMouseListener(playMouseController);
+
+            renderWindow.submit(pause);
+            renderWindow.submit(play);
 
         }
     }
