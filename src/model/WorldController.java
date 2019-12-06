@@ -37,6 +37,7 @@ public class WorldController implements GameController {
 
     @Override
     public void keyTyped(KeyEvent e) {
+
         switch (e.getKeyChar()) {
             case 'd':
             case 'D':
@@ -109,7 +110,16 @@ public class WorldController implements GameController {
 
     }
 
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
     private List<Cmd> commandBuffer;
     private boolean start;
     private boolean instruction;
+    private boolean pause;
 }

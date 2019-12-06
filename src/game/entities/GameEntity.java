@@ -16,6 +16,7 @@ public abstract class GameEntity implements Drawable {
     public static final float GLUEDIVIDESPEED = 2f;
     public static final int HITINVINCIBILITYFRAMES = 15;
     public static final float SWIFTSPEEDMODIFIER = 2.5f;
+    public static final int HEALTHMAX = 3;
 
     public GameEntity(Vec2 position, Vec2 box) {
         this.position = position;
@@ -30,6 +31,7 @@ public abstract class GameEntity implements Drawable {
     }
 
     public abstract void update();
+    public abstract void touchObstacle();
     
     public void applyMovement(CollisionResolver collisionResolver) {
         position = new Vec2(nextPosition);
@@ -110,6 +112,10 @@ public abstract class GameEntity implements Drawable {
 
     public int getHealth() {
         return health;
+    }
+
+    public static int getHEALTHMAX() {
+        return HEALTHMAX;
     }
 
     public int getInvincibilityFrames() {

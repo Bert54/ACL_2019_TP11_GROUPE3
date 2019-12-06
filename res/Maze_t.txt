@@ -1,5 +1,7 @@
 Hero 910,910 30,30
 Monster 200,200 30,30
+MonsterHorizental  200,200 30,30
+MonsterVertical 200,200 30,30
 Coin 10,10 50,50
 LavaTile 50,150 50,50
 TeleportTile 100,100 50,50 150,150
