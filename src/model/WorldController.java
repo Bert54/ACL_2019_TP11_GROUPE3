@@ -109,10 +109,6 @@ public class WorldController implements GameController {
 
     }
 
-    public void spawnProjectile() {
-
-    }
-
     private List<Cmd> commandBuffer;
     private boolean start;
     private boolean instruction;

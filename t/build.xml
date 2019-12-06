@@ -6,11 +6,7 @@
 
     <target name="compile" depends = "clean">
         <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes">
-		<classpath>
-			<fileset dir="lib" includes="junit-jupiter-api-5.6.0-M1.jar" />
-		</classpath>
-	</javac>	
+        <javac srcdir="src" destdir="build/classes"/>
     </target>
 
     <target name="build" depends = "compile">
@@ -21,11 +17,6 @@
             </manifest>
             <fileset dir="res"/>
         </jar>
-    </target>
-
-    <target name="run_tests" depends = "compile">
-	<junit printsummary="yes" logfailedtests="true">
-	</junit>
     </target>
 
     <target name="run">
