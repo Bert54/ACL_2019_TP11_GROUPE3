@@ -253,7 +253,7 @@ public class Maze {
         pending.clear();
     }
 
-    public  void spawnProjectile(GameEntity entity) {
+    public void spawnProjectile(GameEntity entity) {
         Vec2 direction = new Vec2(entity.getNextPosition());
         direction.x -= entity.getPosition().x + 1;
         direction.y -= entity.getPosition().y + 1;
@@ -264,7 +264,9 @@ public class Maze {
         Vec2 position = new Vec2(entity.getPosition());
         position.x += 5;
         position.y += 5;
-        pending.add(new Projectile(entity, position, entity.getBox(), direction));
+	GameEntity projectile = new Projectile(entity, position, entity.getBox(), direction);
+	entity.addSubEntity(projectile);
+        pending.add(projectile);
     }
 
     public List<Tile> getTiles() {
