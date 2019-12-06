@@ -90,6 +90,7 @@ public abstract class GameEntity implements Drawable {
 
     public void onHit(GameEntity e) {
         if (this.invincibilityFrames <= 0 && !owned.contains(e)) {
+			cancelMovement();
             --health;
             this.isHit = true;
             this.invincibilityFrames = HITINVINCIBILITYFRAMES;
