@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class SwiftTile extends Tile {
 
-    public static final int SPEEDBONUSDURATION = 15;
+    public static final int SPEEDBONUSDURATION = 80;
 
     private Texture texture;
 

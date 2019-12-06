@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class GameEntity implements Drawable {
 
-    public static final int GLUEDIVIDESPEED = 2;
+    public static final float GLUEDIVIDESPEED = 2f;
     public static final int HITINVINCIBILITYFRAMES = 15;
     public static final float SWIFTSPEEDMODIFIER = 2.5f;
 
@@ -35,9 +35,11 @@ public abstract class GameEntity implements Drawable {
         position = new Vec2(nextPosition);
         if (this.invincibilityFrames > 0 ) {
             this.invincibilityFrames -= 1;
-            if (this.invincibilityFrames <= 0 && this.previousHealth != 0) {
-                this.health = this.previousHealth;
-                this.previousHealth = 0;
+            if (this.invincibilityFrames <= 0) {
+                if (this.previousHealth != 0) {
+                    this.health = this.previousHealth;
+                    this.previousHealth = 0;
+                }
                 this.isHit = false;
             }
         }
@@ -62,8 +64,8 @@ public abstract class GameEntity implements Drawable {
             this.speedFrames -= 1;
         }
         if (this.slowedFrames > 0) {
-            translation.x = translation.x / GLUEDIVIDESPEED;
-            translation.y = translation.y / GLUEDIVIDESPEED;
+            translation.x = (int)(translation.x / GLUEDIVIDESPEED);
+            translation.y = (int)(translation.y / GLUEDIVIDESPEED);
             this.slowedFrames -= 1;
         }
         nextPosition.x += (translation.x * 1.5);
