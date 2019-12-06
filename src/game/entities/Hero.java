@@ -31,6 +31,11 @@ public class Hero extends GameEntity {
         controller.onUpdate();
     }
 
+    @Override
+    public void touchObstacle() {
+
+    }
+
     public void collectCoin(Coin c) {
         win = true;
         //System.exit(0);

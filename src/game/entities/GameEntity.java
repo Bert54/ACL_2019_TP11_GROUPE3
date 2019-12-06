@@ -26,6 +26,7 @@ public abstract class GameEntity implements Drawable {
     }
 
     public abstract void update();
+    public abstract void touchObstacle();
     
     public void applyMovement(CollisionResolver collisionResolver) {
         position = new Vec2(nextPosition);

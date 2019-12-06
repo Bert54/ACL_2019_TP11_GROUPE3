@@ -21,6 +21,17 @@ public class EntityBuilder {
         monster.setController(new MonsterDefaultController(monster));
         return monster;
     }
+    public MonsterVertical buildMonsterVer(Vec2 pos, Vec2 box){
+        MonsterVertical monsterVertical = new MonsterVertical(pos, box);
+        monsterVertical.setController(new MonsterVerController(monsterVertical));
+        return monsterVertical;
+    }
+
+    public MonsterHorizental buildMonsterHor(Vec2 pos, Vec2 box){
+        MonsterHorizental monsterHorizental = new MonsterHorizental(pos, box);
+        monsterHorizental.setController(new MonsterHorController(monsterHorizental));
+        return monsterHorizental;
+    }
 
 
     private WorldController controller;

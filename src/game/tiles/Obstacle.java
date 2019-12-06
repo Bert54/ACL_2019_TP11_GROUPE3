@@ -19,6 +19,7 @@ public class Obstacle extends Tile {
         if (e != null) {
             e.cancelMovement();
         }
+        e.touchObstacle();
     }
 
     @Override

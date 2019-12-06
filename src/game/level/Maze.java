@@ -201,6 +201,15 @@ public class Maze {
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     entities.add(builder.buildMonster(new Vec2(x, y), new Vec2(30, 30)));
                                     break;
+                                case 'A':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    entities.add(builder.buildMonsterVer(new Vec2(x, y), new Vec2(30, 30)));
+                                    break;
+                                case 'V':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    entities.add(builder.buildMonsterHor(new Vec2(x, y), new Vec2(30, 30)));
+                                    break;
+
                                 case '-':
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     break;

@@ -21,6 +21,11 @@ public class Monster extends GameEntity {
         controller.onUpdate();
     }
 
+    @Override
+    public void touchObstacle() {
+
+    }
+
     public void collectCoin(Coin c) {
         cancelMovement();
     }
