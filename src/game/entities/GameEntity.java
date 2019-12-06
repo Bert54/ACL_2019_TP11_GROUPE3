@@ -100,6 +100,8 @@ public abstract class GameEntity implements Drawable {
         }
     }
 
+
+
     public abstract void collectCoin(Coin c);
 
     public boolean isWin() {
