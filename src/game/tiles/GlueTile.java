@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class GlueTile extends Tile {
 
-    public static final int GLUEFRAMESAM = 1;
+    public static final int GLUEFRAMESAM = 3;
     private Texture texture;
 
     public GlueTile(Vec2 position, Vec2 box) {
