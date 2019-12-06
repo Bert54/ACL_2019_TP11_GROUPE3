@@ -7,6 +7,7 @@ import game.level.TextureFactory;
 import game.level.Vec2;
 
 import java.awt.image.BufferedImage;
+import java.awt.*;
 
 public class Monster extends GameEntity {
 
@@ -43,5 +44,7 @@ public class Monster extends GameEntity {
 
     public void draw(BufferedImage image, Camera camera) {
         texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        Graphics2D graphics = (Graphics2D)image.getGraphics();
+        graphics.drawString("Health : "+health, position.x - camera.position.x, position.y - camera.position.y);
     }
 }
