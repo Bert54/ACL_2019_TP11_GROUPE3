@@ -18,7 +18,15 @@ public class Monster extends GameEntity {
     }
 
     public void update() {
+        if(health <= 0) {
+            disposable = true;
+        }
         controller.onUpdate();
+    }
+
+    @Override
+    public void touchObstacle() {
+
     }
 
     public void onHit(GameEntity e) {
@@ -29,18 +37,11 @@ public class Monster extends GameEntity {
         }
     }
 
-    @Override
-    public void touchObstacle() {
-
-    }
-
     public void collectCoin(Coin c) {
         cancelMovement();
     }
 
     public void draw(BufferedImage image, Camera camera) {
-
         texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
-
     }
 }

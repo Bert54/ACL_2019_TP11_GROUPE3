@@ -21,6 +21,11 @@ public class Projectile extends GameEntity {
         controller.onUpdate();
     }
 
+    @Override
+    public void touchObstacle() {
+
+    }
+
     public void onHit(GameEntity e) {
         if(e != owner) {
             disposable = true;
