@@ -1,5 +1,7 @@
 package game.level;
 
+import java.lang.Math;
+
 public class Vec2 {
     public Vec2() {
     }
@@ -14,5 +16,11 @@ public class Vec2 {
         y = vector.y;
     }
     
+    public void normalize() {
+        double len = Math.sqrt(x * x + y * y);
+        x /= len;
+        y /= len;
+    }
+
     public int x, y;
 }

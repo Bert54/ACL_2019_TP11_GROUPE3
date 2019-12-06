@@ -48,6 +48,8 @@ public class GameEngineGraphical {
 		this.gamePainter = gamePainter;
 		this.gameController = gameController;
 		this.frame = f;
+
+		lastTime = System.nanoTime();
 	}
 
 	/**
@@ -59,16 +61,20 @@ public class GameEngineGraphical {
 		this.gui = new GraphicalInterface(this.gamePainter,this.gameController, this.frame);
 
 		// boucle de game
-		while (!this.game.isFinished()) {
-			this.game.evolve();
-			this.gui.paint();
-			gameController.clearCommands();
-			Thread.sleep(100);
-		}
 
-		this.gui.paint();
+		while (!this.game.isFinished()) {
+			deltaTime = System.nanoTime() - lastTime;
+			//locked at 60 fps
+			if(deltaTime >= 1000000 * 16) {
+				this.game.evolve();
+				this.gui.paint();
+				lastTime = System.nanoTime();
+			}
+		}
 	}
 
 	private JFrame frame;
+	private long lastTime;
+	private long deltaTime;
 
 }

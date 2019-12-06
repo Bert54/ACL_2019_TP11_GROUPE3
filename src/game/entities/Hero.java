@@ -8,6 +8,7 @@ import game.level.Vec2;
 import game.tiles.Coin;
 
 import java.awt.image.BufferedImage;
+import java.awt.*;
 
 public class Hero extends GameEntity {
 
@@ -26,7 +27,6 @@ public class Hero extends GameEntity {
     public void update() {
         if(health <= 0) {
             lose = true;
-            //System.exit(0);
         }
         controller.onUpdate();
     }
@@ -38,14 +38,13 @@ public class Hero extends GameEntity {
 
     public void collectCoin(Coin c) {
         win = true;
-        //System.exit(0);
     }
 
     public void applyMovement(CollisionResolver c) {
         super.applyMovement(c);
         //center the camera
-        camera.position.x = position.x - camera.scissor.x / 2;
-        camera.position.y = position.y - camera.scissor.y / 2;
+        camera.position.x = (position.x - camera.scissor.x) / 2;
+        camera.position.y = (position.y - camera.scissor.y) / 2;
     }
 
     public void draw(BufferedImage image, Camera camera) {
@@ -58,6 +57,8 @@ public class Hero extends GameEntity {
         else {
             texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
         }
+        Graphics2D graphics = (Graphics2D)image.getGraphics();
+        graphics.drawString("Health : "+health, position.x - camera.position.x, position.y - camera.position.y);
     }
 
     private Camera camera;

@@ -8,6 +8,9 @@ import game.tiles.Coin;
 
 import java.awt.image.BufferedImage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class GameEntity implements Drawable {
 
     public static final int GLUEDIVIDESPEED = 2;
@@ -23,6 +26,7 @@ public abstract class GameEntity implements Drawable {
         this.slowedFrames = 0;
         this.speedFrames = 0;
         this.isHit = false;
+		owned = new ArrayList<GameEntity>();
     }
 
     public abstract void update();
@@ -84,9 +88,8 @@ public abstract class GameEntity implements Drawable {
         return box;
     }
 
-    public void onHit() {
-        cancelMovement();
-        if (this.invincibilityFrames <= 0) {
+    public void onHit(GameEntity e) {
+        if (this.invincibilityFrames <= 0 && !owned.contains(e)) {
             --health;
             this.isHit = true;
             this.invincibilityFrames = HITINVINCIBILITYFRAMES;
@@ -98,6 +101,10 @@ public abstract class GameEntity implements Drawable {
     public boolean isWin() {
         return win;
     }
+
+	public void addSubEntity(GameEntity e) {
+		owned.add(e);
+	}
 
     public int getHealth() {
         return health;
@@ -139,6 +146,10 @@ public abstract class GameEntity implements Drawable {
         this.previousHealth = ph;
     }
 
+    public boolean isDisposable() {
+        return disposable;
+    }
+
     public abstract void draw(BufferedImage image, Camera camera);
 
     protected EntityController controller;
@@ -153,10 +164,14 @@ public abstract class GameEntity implements Drawable {
     protected int invincibilityFrames;
     protected boolean isHit;
 
+	protected List<GameEntity> owned;
+
     protected int slowedFrames;
 
     protected int speedFrames;
   
     protected boolean win;
     protected boolean lose;
+
+    protected boolean disposable;
 }

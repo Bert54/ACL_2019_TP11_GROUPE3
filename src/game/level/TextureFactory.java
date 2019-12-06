@@ -11,11 +11,10 @@ public class TextureFactory {
 
     public static Texture get(String name) {
         Texture t = textures.get(name);
-        if(t != null) {
-            return t;
+        if(t == null) {
+            t = new Texture(name);
+            textures.put(name, t);
         }
-        t = new Texture(name);
-        textures.put(name, t);
         return t;
     }
 

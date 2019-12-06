@@ -52,8 +52,8 @@ public class CollisionResolver {
     }
 
     private void collision(GameEntity e1, GameEntity e2){
-        e1.onHit();
-        e2.onHit();
+        e1.onHit(e2);
+        e2.onHit(e1);
     }
 
     private void collision(GameEntity e1, Tile t){

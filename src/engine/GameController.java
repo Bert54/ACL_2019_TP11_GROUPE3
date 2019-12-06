@@ -1,6 +1,7 @@
 package engine;
 
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.util.List;
 /**
  * @author Horatiu Cirstea
@@ -8,7 +9,7 @@ import java.util.List;
  * controleur qui envoie des commandes au jeu 
  * 
  */
-public interface GameController extends KeyListener {
+public interface GameController extends KeyListener, MouseListener {
 
 	/**
 	 * quand on demande les commandes, le controleur retourne les commandes en

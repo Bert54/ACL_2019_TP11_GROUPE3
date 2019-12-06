@@ -11,8 +11,8 @@ public class MonsterDefaultController implements EntityController {
     }
 
     public void onUpdate() {
-        int x = rng.nextInt(6);
-        int y = rng.nextInt(6);
+        int x = rng.nextInt(5);
+        int y = rng.nextInt(5);
         int sx = rng.nextInt(2) == 0 ? 1 : -1;
         int sy = rng.nextInt(2) == 0 ? 1 : -1;
         monster.move(new Vec2(x * sx, y * sx));

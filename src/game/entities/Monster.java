@@ -21,6 +21,14 @@ public class Monster extends GameEntity {
         controller.onUpdate();
     }
 
+    public void onHit(GameEntity e) {
+        cancelMovement();
+        super.onHit(e);
+        if(health <= 0) {
+            disposable = true;
+        }
+    }
+
     @Override
     public void touchObstacle() {
 
