@@ -16,8 +16,8 @@ public class WorldPainter implements GamePainter {
     /**
      * la taille des cases
      */
-    protected static final int WIDTH = 800;
-    protected static final int HEIGHT = 800;
+    protected static final int WIDTH = 750;
+    protected static final int HEIGHT = 750;
 
     public WorldPainter(Camera camera) {
         this.camera = camera;
