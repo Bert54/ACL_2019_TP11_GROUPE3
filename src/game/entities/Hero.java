@@ -18,10 +18,11 @@ public class Hero extends GameEntity {
 
     public Hero(Camera camera, Vec2 position, Vec2 box) {
         super(position, box);
-        texture = TextureFactory.get("player.bmp");
-        textureHit = TextureFactory.get("player_hit.bmp");
-        textureInv = TextureFactory.get("player_inv.bmp");
+        texture = TextureFactory.get("player.png");
+        textureHit = TextureFactory.get("player_hit.png");
+        textureInv = TextureFactory.get("player_inv.png");
         this.camera = camera;
+        this.health = HEROMAXHEALTH;
     }
 
     public void update() {

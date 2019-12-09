@@ -120,9 +120,9 @@ public class World implements Game {
 
                 if (e.getClass().getSimpleName().equals("Hero")){
 
-                    if (e.getHealth() <= GameEntity.getHEALTHMAX()) {
+                    if (e.getHealth() <= GameEntity.HEROMAXHEALTH) {
 
-                        healthBar.setHealthBarWidth((e.getHealth() * healthBar.getWidth()) / GameEntity.getHEALTHMAX());
+                        healthBar.setHealthBarWidth((e.getHealth() * healthBar.getWidth()) / GameEntity.HEROMAXHEALTH);
                     }
                     healthBar.setText(e.getHealth() + "");
                     renderWindow.submit(healthBar);

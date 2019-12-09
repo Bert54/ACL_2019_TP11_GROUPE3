@@ -14,7 +14,7 @@ public class MonsterVertical extends GameEntity{
 
     public MonsterVertical(Vec2 position, Vec2 box) {
         super(position, box);
-        texture = TextureFactory.get("monster_basic.png");
+        texture = TextureFactory.get("monster_3.png");
     }
 
     public void update() {
