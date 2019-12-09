@@ -40,3 +40,17 @@
 * ajouter la capacité de tir du héro
 
 * (si on a le temps: système sauvegarde & reprise)
+
+# sprint 4
+
+* ajouter des sprites pour les nouveaux monstres et projectiles
+
+* terminer les projectiles
+
+* terminer les nouveaux monstres
+
+* ajouter système save / load
+
+* ajouter des objectifs secondaires
+
+* faire plus de tests

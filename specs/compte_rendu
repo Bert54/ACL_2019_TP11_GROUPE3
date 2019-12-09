@@ -30,3 +30,18 @@ Décisions pour le Sprint 3 :
     ajouter bouton start/pause
     ajouter la capacité de tir du héro
     (si on a le temps: système sauvegarde & reprise)
+
+Sprint 3 retrospective :
+Toutes les fonctionnalités n'ont pas été implémentées complètement par manque d'organisation.
+Tout les points de la liste des choses à faire n'ont pas tous été choisi au moment de l'élaboration
+de la-dite liste, ce qui a mené à un reatrd de développement. Le 4e sprint a pour but de palier ces
+manques. Cependant, le travail a été réparti de façon relativement équitable, ce qui a permi une
+avance rapide durant ces derniers jours.
+
+Décisions pour le Sprint 4 :
+    ajouter des sprites pour les nouveaux monstres et projectiles
+    terminer les projectiles
+    terminer les nouveaux monstres
+    ajouter système save / load
+    ajouter des objectifs secondaires
+    faire plus de tests

@@ -6,6 +6,7 @@ import game.level.TextureFactory;
 import game.level.Vec2;
 import game.tiles.Coin;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MonsterVertical extends GameEntity{
@@ -17,8 +18,12 @@ public class MonsterVertical extends GameEntity{
     }
 
     public void update() {
+        if (health <= 0) {
+            disposable = true;
+        }
         controller.onUpdate();
     }
+
 
     public void collectCoin(Coin c) {
         cancelMovement();
@@ -27,13 +32,15 @@ public class MonsterVertical extends GameEntity{
     public void draw(BufferedImage image, Camera camera) {
 
         texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        Graphics2D graphics = (Graphics2D)image.getGraphics();
+        graphics.drawString("Health : "+health, position.x - camera.position.x, position.y - camera.position.y);
 
     }
     public void touchObstacle(){
         ((MonsterVerController)controller).inverseDirection();
     }
     public void onHit(GameEntity e) {
-        super.onHit(e);
+         super.onHit(e);
         ((MonsterVerController)controller).inverseDirection();
     }
 }
