@@ -1,6 +1,7 @@
 package game.level;
 
 import exceptions.NoHeroException;
+import exceptions.TeleportNoDestinationException;
 import game.entities.EntityBuilder;
 import game.entities.GameEntity;
 import game.entities.Projectile;
@@ -31,7 +32,7 @@ public class Maze {
             pending = new ArrayList<GameEntity>();
             tiles = new ArrayList<Tile>();
             tileBuilder = new TileBuilder();
-            //ugly
+            //ugly <-- who wrote that? :)
             builder = new EntityBuilder(this, controller);
 
             String chemin = "res/Maze.txt";
@@ -194,8 +195,13 @@ public class Maze {
                                     tiles.add(tileBuilder.buildGlueTile(new Vec2(x, y), new Vec2(50, 50)));
                                     break;
                                 case 'T':
-                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
-                                    tiles.add(tileBuilder.buildTeleportTile(new Vec2(x, y), new Vec2(50, 50), new Vec2(teleportDestX, teleportDestY)));
+                                    if (teleportDestX >= 0 && teleportDestY >= 0) {
+                                        tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                        tiles.add(tileBuilder.buildTeleportTile(new Vec2(x, y), new Vec2(50, 50), new Vec2(teleportDestX, teleportDestY)));
+                                    }
+                                    else {
+                                        throw new TeleportNoDestinationException();
+                                    }
                                     break;
                                 case 'S':
                                     tiles.add(tileBuilder.buildSpeedTile(new Vec2(x, y), new Vec2(50, 50)));
@@ -243,6 +249,7 @@ public class Maze {
                     e.printStackTrace();
                 } catch (NoHeroException e) {
                     e.printStackTrace();
+                    System.exit(1);
                 }
             }
         }
