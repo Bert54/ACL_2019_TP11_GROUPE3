@@ -11,6 +11,7 @@ import java.awt.PointerInfo;
 import java.util.List;
 import java.util.ArrayList;
 
+import game.entities.Hero;
 import game.level.Vec2;
 
 public class WorldController implements GameController {
@@ -42,10 +43,12 @@ public class WorldController implements GameController {
             case 'd':
             case 'D':
                 commandBuffer.add(Cmd.RIGHT);
+                Hero.direction = Hero.RIGHT;
                 break;
             case 'a':
             case 'A':
                 commandBuffer.add(Cmd.LEFT);
+                Hero.direction = Hero.LEFT;
                 break;
             case 'w':
             case 'W':

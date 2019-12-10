@@ -12,15 +12,22 @@ import java.awt.*;
 
 public class Hero extends GameEntity {
 
-    private Texture texture;
-    private Texture textureHit;
-    private Texture textureInv;
+    public static final int LEFT = 0;
+    public static final int RIGHT = 1;
+
+    public static int direction = RIGHT;
+
+    private Texture[] textureArr;
 
     public Hero(Camera camera, Vec2 position, Vec2 box) {
         super(position, box);
-        texture = TextureFactory.get("player.png");
-        textureHit = TextureFactory.get("player_hit.png");
-        textureInv = TextureFactory.get("player_inv.png");
+        this.textureArr = new Texture[6];
+        this.textureArr[0] = TextureFactory.get("player.png");
+        this.textureArr[1] = TextureFactory.get("player_hit.png");
+        this.textureArr[2] = TextureFactory.get("player_inv.png");
+        this.textureArr[3] = TextureFactory.get("player_2.png");
+        this.textureArr[4] = TextureFactory.get("player_hit_2.png");
+        this.textureArr[5] = TextureFactory.get("player_inv_2.png");
         this.camera = camera;
         this.health = HEROMAXHEALTH;
     }
@@ -49,15 +56,26 @@ public class Hero extends GameEntity {
     }
 
     public void draw(BufferedImage image, Camera camera) {
-        if (this.isHit) {
-            textureHit.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
-        }
-        else if (this.invincibilityFrames > 0) {
-            textureInv.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+        int i;
+        if (direction == RIGHT) {
+            if (this.isHit) {
+                i = 1;
+            } else if (this.invincibilityFrames > 0) {
+                i = 2;
+            } else {
+                i = 0;
+            }
         }
         else {
-            texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+            if (this.isHit) {
+                i = 4;
+            } else if (this.invincibilityFrames > 0) {
+                i = 5;
+            } else {
+                i = 3;
+            }
         }
+        textureArr[i].draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
         Graphics2D graphics = (Graphics2D)image.getGraphics();
         graphics.drawString("Health : "+health, position.x - camera.position.x, position.y - camera.position.y);
     }
