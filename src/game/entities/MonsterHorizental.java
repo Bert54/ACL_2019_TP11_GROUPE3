@@ -18,6 +18,9 @@ public class MonsterHorizental extends GameEntity{
     }
 
     public void update() {
+        if (health <= 0) {
+            disposable = true;
+        }
         controller.onUpdate();
     }
 

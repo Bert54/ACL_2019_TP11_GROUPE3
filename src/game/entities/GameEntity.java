@@ -66,12 +66,8 @@ public abstract class GameEntity implements Drawable {
             this.speedFrames -= 1;
         }
         if (this.slowedFrames > 0) {
-            System.out.println(translation.x);
-            System.out.println(translation.y);
             translation.x = (int)(translation.x / GLUEDIVIDESPEED);
             translation.y = (int)(translation.y / GLUEDIVIDESPEED);
-            System.out.println(translation.x);
-            System.out.println(translation.y);
             this.slowedFrames -= 1;
         }
         nextPosition.x += (translation.x);
