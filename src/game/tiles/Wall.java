@@ -8,11 +8,11 @@ import game.level.TextureFactory;
 import game.level.Vec2;
 import game.entities.GameEntity;
 
-public class Obstacle extends Tile {
+public class Wall extends Tile {
 
-    public Obstacle(Vec2 position, Vec2 box) {
+    public Wall(Vec2 position, Vec2 box) {
         super(position, box);
-        texture = TextureFactory.get("box.bmp");
+        texture = TextureFactory.get("wall.png");
     }
 
     public void onEnter(GameEntity e) {
