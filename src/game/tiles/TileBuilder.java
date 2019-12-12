@@ -4,8 +4,12 @@ import game.level.Vec2;
 
 public class TileBuilder {
 
-    public Wall buildObstacle(Vec2 pos, Vec2 box) {
+    public Wall buildWall(Vec2 pos, Vec2 box) {
         return new Wall(pos, box);
+    }
+
+    public Obstacle buildObstacle(Vec2 pos, Vec2 box) {
+        return new Obstacle(pos, box);
     }
 
     public Coin buildCoin(Vec2 pos, Vec2 box) {

@@ -66,12 +66,16 @@ public abstract class GameEntity implements Drawable {
             this.speedFrames -= 1;
         }
         if (this.slowedFrames > 0) {
+            System.out.println(translation.x);
+            System.out.println(translation.y);
             translation.x = (int)(translation.x / GLUEDIVIDESPEED);
             translation.y = (int)(translation.y / GLUEDIVIDESPEED);
+            System.out.println(translation.x);
+            System.out.println(translation.y);
             this.slowedFrames -= 1;
         }
-        nextPosition.x += (translation.x * 1.5);
-        nextPosition.y += (translation.y * 1.5);
+        nextPosition.x += (translation.x);
+        nextPosition.y += (translation.y);
     }
 
     public void moveTo(Vec2 pos) {
@@ -100,7 +104,9 @@ public abstract class GameEntity implements Drawable {
         }
     }
 
-
+    public boolean isProjectile() {
+        return false;
+    }
 
     public abstract void collectCoin(Coin c);
 
@@ -154,6 +160,10 @@ public abstract class GameEntity implements Drawable {
 
     public void setPreviousHealth(int ph) {
         this.previousHealth = ph;
+    }
+
+    public void setDisposable(boolean newState) {
+        this.disposable = newState;
     }
 
     public boolean isDisposable() {

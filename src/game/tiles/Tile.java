@@ -11,6 +11,7 @@ public abstract class Tile implements Drawable {
     public Tile(Vec2 position, Vec2 box) {
         this.position = position;
         this.box = box;
+        this.disposable = false;
     }
 
     public Vec2 getPosition() {
@@ -19,6 +20,10 @@ public abstract class Tile implements Drawable {
 
     public Vec2 getBox() {
         return box;
+    }
+
+    public boolean isDisposable() {
+        return disposable;
     }
 
     public abstract void onEnter(GameEntity e);
@@ -31,4 +36,5 @@ public abstract class Tile implements Drawable {
 
     protected Vec2 position;
     protected Vec2 box;
+    protected boolean disposable;
 }

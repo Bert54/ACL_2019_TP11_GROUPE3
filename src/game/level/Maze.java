@@ -174,6 +174,10 @@ public class Maze {
                         for (int i = 0; i < line.length(); i++) {
                             switch (line.charAt(i)) {
                                 case '*':
+                                    tiles.add(tileBuilder.buildWall(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case ':':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(50, 50)));
                                     break;
                                 case 'H':
@@ -261,6 +265,13 @@ public class Maze {
             GameEntity e = it.next();
             if(e.isDisposable()) {
                 it.remove();
+            }
+        }
+        Iterator<Tile> it2 = tiles.iterator();
+        while(it2.hasNext()) {
+            Tile t = it2.next();
+            if(t.isDisposable()) {
+                it2.remove();
             }
         }
         for(GameEntity e : pending) {
