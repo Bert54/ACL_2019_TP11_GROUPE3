@@ -1,6 +1,6 @@
 package tests.tiles;
 
-import game.tiles.Obstacle;
+import game.tiles.Wall;
 import game.tiles.Tile;
 import game.level.Vec2;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ public class ObstacleTests {
 
     @Test
     void OnEnterNullTest() {
-        Tile t = new Obstacle(new Vec2(10, 10), new Vec2(10, 10));
+        Tile t = new Wall(new Vec2(10, 10), new Vec2(10, 10));
         assertDoesNotThrow(() -> {
             t.onEnter(null);
         });
@@ -20,7 +20,7 @@ public class ObstacleTests {
 
     @Test
     void OnTileNullTest() {
-        Tile t = new Obstacle(new Vec2(10, 10), new Vec2(10, 10));
+        Tile t = new Wall(new Vec2(10, 10), new Vec2(10, 10));
         assertDoesNotThrow(() -> {
             t.onTile(null);
         });
@@ -29,7 +29,7 @@ public class ObstacleTests {
 
     @Test
     void OnExitNullTest() {
-        Tile t = new Obstacle(new Vec2(10, 10), new Vec2(10, 10));
+        Tile t = new Wall(new Vec2(10, 10), new Vec2(10, 10));
         assertDoesNotThrow(() -> {
             t.onExit(null);
         });

@@ -126,7 +126,7 @@ public class Maze {
 
                             tiles.add(tileBuilder.buildInvTile(new Vec2(x, y), new Vec2(w, h)));
                             break;
-                        case "Obstacle":
+                        case "Wall":
 
                             tiles.add(tileBuilder.buildObstacle(new Vec2(x,y), new Vec2(w, h)));
                             break;

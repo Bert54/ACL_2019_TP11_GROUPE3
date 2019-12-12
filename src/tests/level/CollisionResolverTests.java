@@ -45,7 +45,7 @@ public class CollisionResolverTests {
 
     @Test
     void sameTileInListTest() {
-        Tile t = new Obstacle(new Vec2(0, 0), new Vec2(50, 50));
+        Tile t = new Wall(new Vec2(0, 0), new Vec2(50, 50));
         List<Tile> tList = new ArrayList<>();
         tList.add(t);
         tList.add(t);
@@ -60,10 +60,10 @@ public class CollisionResolverTests {
 
     @Test
     void sameTileButDifAdressesInListTest() {
-        Tile t = new Obstacle(new Vec2(0, 0), new Vec2(50, 50));
+        Tile t = new Wall(new Vec2(0, 0), new Vec2(50, 50));
         List<Tile> tList = new ArrayList<>();
         tList.add(t);
-        t = new Obstacle(new Vec2(0, 0), new Vec2(50, 50));
+        t = new Wall(new Vec2(0, 0), new Vec2(50, 50));
         tList.add(t);
         assertDoesNotThrow(() -> {
 
@@ -106,7 +106,7 @@ public class CollisionResolverTests {
         int entityAmount = 50000;
         int tileAmount = 25000;
         GameEntity gn = new Hero(new Camera(), new Vec2(0, 0), new Vec2(30, 30));
-        Tile t = new Obstacle(new Vec2(0, 0), new Vec2(50, 50));
+        Tile t = new Wall(new Vec2(0, 0), new Vec2(50, 50));
         List<GameEntity> gnList = new ArrayList<>(entityAmount);
         List<Tile> tList = new ArrayList<>(tileAmount);
         for (int i = 0 ; i < entityAmount ; i++) {
@@ -127,7 +127,7 @@ public class CollisionResolverTests {
         GameEntity ge1 = new Hero(new Camera(), new Vec2(0, 0), new Vec2(30, 30));
         GameEntity ge2 = new Monster(new Vec2(0, 0), new Vec2(30, 30));
         GameEntity ge3 = new Projectile(ge1, new Vec2(0, 0), new Vec2(30, 30), new Vec2(0, 0));
-        Tile t1 = new Obstacle(new Vec2(0, 0), new Vec2(50, 50));
+        Tile t1 = new Wall(new Vec2(0, 0), new Vec2(50, 50));
         Tile t2 = new GlueTile(new Vec2(0, 0), new Vec2(50, 50));
         Tile t3 = new SwiftTile(new Vec2(0, 0), new Vec2(50, 50));
         Tile t4 = new LavaTile(new Vec2(0, 0), new Vec2(50, 50));
@@ -152,7 +152,7 @@ public class CollisionResolverTests {
         GameEntity ge1 = new Hero(new Camera(), new Vec2(0, 0), new Vec2(30, 30));
         GameEntity ge2 = new Monster(new Vec2(0, 0), new Vec2(30, 30));
         GameEntity ge3 = new Projectile(ge1, new Vec2(0, 0), new Vec2(30, 30), new Vec2(0, 0));
-        Tile t1 = new Obstacle(new Vec2(0, 0), new Vec2(50, 50));
+        Tile t1 = new Wall(new Vec2(0, 0), new Vec2(50, 50));
         Tile t2 = new GlueTile(new Vec2(0, 0), new Vec2(50, 50));
         Tile t3 = new SwiftTile(new Vec2(0, 0), new Vec2(50, 50));
         Tile t4 = new LavaTile(new Vec2(0, 0), new Vec2(50, 50));
