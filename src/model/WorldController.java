@@ -90,6 +90,7 @@ public class WorldController implements GameController {
 
     public Vec2 getDirection() {
         Point p = MouseInfo.getPointerInfo().getLocation();
+	System.out.println(p);
         return new Vec2(p.x, p.y);
     }
 

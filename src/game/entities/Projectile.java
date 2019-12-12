@@ -12,6 +12,8 @@ import java.awt.*;
 public class Projectile extends GameEntity {
 
     private Texture texture;
+    private long spawnTime;
+    private long lifetime;
 
     public Projectile(GameEntity owner, Vec2 position, Vec2 box, Vec2 direction) {
         super(position, box);
@@ -19,9 +21,15 @@ public class Projectile extends GameEntity {
         this.direction = direction;
         controller = new ProjectileController(this);
         this.texture = TextureFactory.get("projectile.png");
+	spawnTime = System.nanoTime();
+	lifetime = 1000000000 * 30;
     }
 
     public void update() {
+	if(spawnTime + lifetime  <= System.nanoTime()) {
+		System.out.println(System.nanoTime() - spawnTime);
+		//disposable = true;
+	}
         controller.onUpdate();
     }
 

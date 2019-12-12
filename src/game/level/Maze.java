@@ -5,8 +5,7 @@ import exceptions.TeleportNoDestinationException;
 import game.entities.EntityBuilder;
 import game.entities.GameEntity;
 import game.entities.Projectile;
-import game.tiles.Tile;
-import game.tiles.TileBuilder;
+import game.tiles.*;
 import model.WorldController;
 
 import java.io.*;
@@ -221,7 +220,9 @@ public class Maze {
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     entities.add(builder.buildMonsterHor(new Vec2(x, y), new Vec2(30, 30)));
                                     break;
-
+				case '_':
+					tiles.add(new HealthTile(new Vec2(x, y), new Vec2(50, 50)));
+				break;
                                 case '-':
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     break;
@@ -273,6 +274,7 @@ public class Maze {
         Vec2 direction = new Vec2(entity.getNextPosition());
         direction.x -= entity.getPosition().x + 1;
         direction.y -= entity.getPosition().y + 1;
+	controller.getDirection();
         /*direction.x = entity.getPosition().x - controller.getDirection().x;
         direction.y = entity.getPosition().y - controller.getDirection().y;
         //direction.normalize();
