@@ -27,7 +27,8 @@ public abstract class GameEntity implements Drawable {
         this.slowedFrames = 0;
         this.speedFrames = 0;
         this.isHit = false;
-		owned = new ArrayList<GameEntity>();
+	owned = new ArrayList<GameEntity>();
+	direction = new Vec2();
     }
 
     public abstract void update();
@@ -72,6 +73,8 @@ public abstract class GameEntity implements Drawable {
         }
         nextPosition.x += (translation.x * 1.5);
         nextPosition.y += (translation.y * 1.5);
+	direction.x = nextPosition.x - position.x;
+	direction.y = nextPosition.y - position.y;
     }
 
     public void moveTo(Vec2 pos) {
@@ -160,11 +163,16 @@ public abstract class GameEntity implements Drawable {
         return disposable;
     }
 
+    public Vec2 getDirection() {
+	return direction;
+    }
+
     public abstract void draw(BufferedImage image, Camera camera);
 
     protected EntityController controller;
     protected Vec2 position;
     protected Vec2 nextPosition;
+    protected Vec2 direction;
     protected Vec2 box;
 
     public boolean onSpecialTile;
@@ -182,6 +190,5 @@ public abstract class GameEntity implements Drawable {
   
     protected boolean win;
     protected boolean lose;
-
     protected boolean disposable;
 }

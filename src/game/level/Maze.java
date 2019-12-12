@@ -271,17 +271,17 @@ public class Maze {
     }
 
     public void spawnProjectile(GameEntity entity) {
-        Vec2 direction = new Vec2(entity.getNextPosition());
-        direction.x -= entity.getPosition().x + 1;
-        direction.y -= entity.getPosition().y + 1;
+        Vec2 direction = new Vec2(entity.getDirection());
+        /*direction.x -= entity.getPosition().x + 1;
+        direction.y -= entity.getPosition().y + 1;*/
 	controller.getDirection();
         /*direction.x = entity.getPosition().x - controller.getDirection().x;
         direction.y = entity.getPosition().y - controller.getDirection().y;
         //direction.normalize();
         */
         Vec2 position = new Vec2(entity.getPosition());
-        position.x += 5;
-        position.y += 5;
+        /*position.x += 5;
+        position.y += 5;*/
 	GameEntity projectile = new Projectile(entity, position, entity.getBox(), direction);
 	entity.addSubEntity(projectile);
         pending.add(projectile);
