@@ -45,24 +45,7 @@ public class Hero extends GameEntity {
     }
 
     public void move(Vec2 translation) {
-        translation.x = translation.x * 3;
-        translation.y = translation.y * 3;
-        if (this.speedFrames > 0) {
-            translation.x = (int)(translation.x * SWIFTSPEEDMODIFIER);
-            translation.y = (int)(translation.y * SWIFTSPEEDMODIFIER);
-            this.speedFrames -= 1;
-        }
-        if (this.slowedFrames > 0) {
-            System.out.println(translation.x);
-            System.out.println(translation.y);
-            translation.x = (int)(translation.x / GLUEDIVIDESPEED);
-            translation.y = (int)(translation.y / GLUEDIVIDESPEED);
-            System.out.println(translation.x);
-            System.out.println(translation.y);
-            this.slowedFrames -= 1;
-        }
-        nextPosition.x += translation.x;
-        nextPosition.y += translation.y;
+        super.move(translation);
     }
 
     public void collectCoin(Coin c) {
