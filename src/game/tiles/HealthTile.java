@@ -20,6 +20,7 @@ public class HealthTile extends Tile {
 		if(active) {
 			e.setHealth(5);
 			active = false;
+			texture = null;
 		}
     }
 
@@ -38,7 +39,9 @@ public class HealthTile extends Tile {
 
     @Override
     public void draw(BufferedImage image, Camera camera) {
-        texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+		if(texture != null) {
+        	texture.draw(image, position.x - camera.position.x, position.y - camera.position.y, box.x, box.y);
+	}
     }
 
     private Texture texture;
