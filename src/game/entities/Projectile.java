@@ -21,14 +21,13 @@ public class Projectile extends GameEntity {
         this.direction = direction;
         controller = new ProjectileController(this);
         this.texture = TextureFactory.get("projectile.png");
-	spawnTime = System.nanoTime();
-	lifetime = 1000000000 * 30;
+	spawnTime = System.currentTimeMillis();
+	lifetime = 1000 * 3;
     }
 
     public void update() {
-	if(spawnTime + lifetime  <= System.nanoTime()) {
-		System.out.println(System.nanoTime() - spawnTime);
-		//disposable = true;
+	if(spawnTime + lifetime  <= System.currentTimeMillis()) {
+		disposable = true;
 	}
         controller.onUpdate();
     }
