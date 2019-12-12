@@ -285,8 +285,6 @@ public class Maze {
     public void spawnProjectile(GameEntity entity) {
         Vec2 direction = new Vec2(entity.getDirection());
 
-	controller.getDirection();
-
         Vec2 position = new Vec2(entity.getPosition());
 
 	GameEntity projectile = new Projectile(entity, position, entity.getBox(), direction);

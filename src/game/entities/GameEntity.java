@@ -71,9 +71,9 @@ public abstract class GameEntity implements Drawable {
             translation.y = (int)(translation.y / GLUEDIVIDESPEED);
             this.slowedFrames -= 1;
         }
-
         nextPosition.x += (translation.x * 1.5);
         nextPosition.y += (translation.y * 1.5);
+	
 	direction.x = nextPosition.x - position.x;
 	direction.y = nextPosition.y - position.y;
     }
