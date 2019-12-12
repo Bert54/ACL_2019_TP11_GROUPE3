@@ -173,6 +173,10 @@ public class Maze {
                         for (int i = 0; i < line.length(); i++) {
                             switch (line.charAt(i)) {
                                 case '*':
+                                    tiles.add(tileBuilder.buildWall(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
+                                case ':':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     tiles.add(tileBuilder.buildObstacle(new Vec2(x, y), new Vec2(50, 50)));
                                     break;
                                 case 'H':
@@ -220,9 +224,10 @@ public class Maze {
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     entities.add(builder.buildMonsterHor(new Vec2(x, y), new Vec2(30, 30)));
                                     break;
-				case '_':
-					tiles.add(new HealthTile(new Vec2(x, y), new Vec2(50, 50)));
-				break;
+                                case '_':
+                                    tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    tiles.add(new HealthTile(new Vec2(x, y), new Vec2(50, 50)));
+                                    break;
                                 case '-':
                                     tiles.add(tileBuilder.buildRegularTile(new Vec2(x, y), new Vec2(50, 50)));
                                     break;
@@ -264,6 +269,13 @@ public class Maze {
                 it.remove();
             }
         }
+        Iterator<Tile> it2 = tiles.iterator();
+        while(it2.hasNext()) {
+            Tile t = it2.next();
+            if(t.isDisposable()) {
+                it2.remove();
+            }
+        }
         for(GameEntity e : pending) {
             entities.add(e);
         }
@@ -272,16 +284,11 @@ public class Maze {
 
     public void spawnProjectile(GameEntity entity) {
         Vec2 direction = new Vec2(entity.getDirection());
-        /*direction.x -= entity.getPosition().x + 1;
-        direction.y -= entity.getPosition().y + 1;*/
+
 	controller.getDirection();
-        /*direction.x = entity.getPosition().x - controller.getDirection().x;
-        direction.y = entity.getPosition().y - controller.getDirection().y;
-        //direction.normalize();
-        */
+
         Vec2 position = new Vec2(entity.getPosition());
-        /*position.x += 5;
-        position.y += 5;*/
+
 	GameEntity projectile = new Projectile(entity, position, entity.getBox(), direction);
 	entity.addSubEntity(projectile);
         pending.add(projectile);

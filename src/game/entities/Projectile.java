@@ -52,6 +52,10 @@ public class Projectile extends GameEntity {
         nextPosition.y += direction.y;
     }
 
+    public boolean isProjectile() {
+        return true;
+    }
+
     public void draw(BufferedImage image, Camera camera) {
         //Graphics2D g2d = (Graphics2D)image.getGraphics();
         //g2d.setColor(Color.red);
