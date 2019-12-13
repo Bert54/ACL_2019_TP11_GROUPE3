@@ -83,11 +83,12 @@ public class World implements Game {
                     text.add("Deplacement a gauche : A ou a");
                     text.add("Deplacement vers le haut : W ou w");
                     text.add("Deplacement vers le bas : S ou s");
+                    text.add("Tirer : clique souris");
                     text.add("Quitter le jeu : Q ou q");
                     int Xcentre = (int) ((renderWindow.getWidth() - crayon.getFontMetrics().getStringBounds(text.get(0), crayon).getWidth()) / 2);
                     int Ycentre = (int) ((renderWindow.getHeight() - crayon.getFontMetrics().getStringBounds(text.get(0), crayon).getHeight()) / 3);
                     int shift = (int) crayon.getFontMetrics().getStringBounds(text.get(0), crayon).getHeight();
-                    for(int i = 0; i < 5; i++){
+                    for(int i = 0; i < 6; i++){
 
                         crayon.drawString(text.get(i), Xcentre, Ycentre + shift * i);
                     }
