@@ -1,0 +1,99 @@
+@startuml
+
+title __CONTROLLERS's Class Diagram__\n
+
+  namespace controllers {
+    class controllers.ExitAppMouseController {
+        + ExitAppMouseController()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+    }
+  }
+  
+
+  namespace controllers {
+    class controllers.InstructionMouseController {
+        - closeGameButton : JPanel
+        - instructionGameButton : JPanel
+        - retourGameButton : JPanel
+        - startGameButton : JPanel
+        + InstructionMouseController()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+    }
+  }
+  
+
+  namespace controllers {
+    class controllers.PauseMouseController {
+        + PauseMouseController()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+    }
+  }
+  
+
+  namespace controllers {
+    class controllers.PlayMouseController {
+        + PlayMouseController()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+    }
+  }
+  
+
+  namespace controllers {
+    class controllers.RetourMouseController {
+        + RetourMouseController()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+    }
+  }
+  
+
+  namespace controllers {
+    class controllers.StartGameMouseController {
+        - closeGameButton : JPanel
+        - instructionGameButton : JPanel
+        - retourGameButton : JPanel
+        - startGameButton : JPanel
+        + StartGameMouseController()
+        + mouseClicked()
+        + mouseEntered()
+        + mouseExited()
+        + mousePressed()
+        + mouseReleased()
+    }
+  }
+  
+
+  controllers.ExitAppMouseController .up.|> java.awt.event.MouseListener
+  controllers.ExitAppMouseController o-- engine.GameController : worldController
+  controllers.InstructionMouseController .up.|> java.awt.event.MouseListener
+  controllers.InstructionMouseController o-- engine.GameController : worldController
+  controllers.PauseMouseController .up.|> java.awt.event.MouseListener
+  controllers.PauseMouseController o-- engine.GameController : worldController
+  controllers.PlayMouseController .up.|> java.awt.event.MouseListener
+  controllers.PlayMouseController o-- engine.GameController : worldController
+  controllers.RetourMouseController .up.|> java.awt.event.MouseListener
+  controllers.RetourMouseController o-- engine.GameController : worldController
+  controllers.StartGameMouseController .up.|> java.awt.event.MouseListener
+  controllers.StartGameMouseController o-- engine.GameController : worldController
+
+
+@enduml

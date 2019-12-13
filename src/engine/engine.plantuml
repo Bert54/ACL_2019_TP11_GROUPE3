@@ -1,0 +1,99 @@
+@startuml
+
+title __ENGINE's Class Diagram__\n
+
+  namespace engine {
+    enum Cmd {
+      DOWN
+      IDLE
+      LEFT
+      RIGHT
+      SHOOT
+      UP
+    }
+  }
+  
+
+  namespace engine {
+    class engine.DrawingPanel {
+        - currentImage : BufferedImage
+        - height : int
+        - nextImage : BufferedImage
+        {static} - serialVersionUID : long
+        - width : int
+        + DrawingPanel()
+        + drawGame()
+        + getHeight()
+        + getWidth()
+        + paint()
+    }
+  }
+  
+
+  namespace engine {
+    interface engine.Game {
+        {static} + start : boolean
+        {abstract} + evolve()
+        {abstract} + isFinished()
+        {abstract} + isStart()
+    }
+  }
+  
+
+  namespace engine {
+    interface engine.GameController {
+        {abstract} + clearCommands()
+        {abstract} + getCommands()
+    }
+  }
+  
+
+  namespace engine {
+    class engine.GameEngineGraphical {
+        - deltaTime : long
+        - frame : JFrame
+        - lastTime : long
+        + GameEngineGraphical()
+        + run()
+    }
+  }
+  
+
+  namespace engine {
+    interface engine.GamePainter {
+        {abstract} + draw()
+        {abstract} + getHeight()
+        {abstract} + getWidth()
+        {abstract} + setFrame()
+        {abstract} + submit()
+    }
+  }
+  
+
+  namespace engine {
+    class engine.GraphicalInterface {
+        + GraphicalInterface()
+        + paint()
+    }
+  }
+  
+
+  namespace engine {
+    class engine.Texture {
+        - texture : BufferedImage
+        + Texture()
+        + draw()
+    }
+  }
+  
+
+  engine.DrawingPanel -up-|> javax.swing.JPanel
+  engine.DrawingPanel o-- engine.GamePainter : painter
+  engine.GameEngineGraphical o-- engine.Game : game
+  engine.GameEngineGraphical o-- engine.GameController : gameController
+  engine.GameEngineGraphical o-- engine.GamePainter : gamePainter
+  engine.GameEngineGraphical o-- engine.GraphicalInterface : gui
+  engine.GraphicalInterface o-- engine.DrawingPanel : panel
+
+
+@enduml

@@ -1,0 +1,178 @@
+@startuml
+
+title __TILES's Class Diagram__\n
+
+  namespace game.tiles {
+    class game.tiles.Coin {
+        + Coin()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.GlueTile {
+        {static} + GLUEFRAMESAM : int
+        + GlueTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.HealthTile {
+        - active : boolean
+        + HealthTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.InvincibilityTile {
+        {static} + INVINCIBILITYFRAMESAMOUNT : int
+        {static} + INVINCIBLEHEALTH : int
+        + InvincibilityTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.LavaTile {
+        {static} + LAVADAMAGE : int
+        {static} + LAVAINVINCIBILITY : int
+        + LavaTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.Obstacle {
+        + Obstacle()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.RegularTile {
+        + RegularTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.SwiftTile {
+        {static} + SPEEDBONUSDURATION : int
+        + SwiftTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.TeleportTile {
+        + TeleportTile()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    abstract class game.tiles.Tile {
+        # disposable : boolean
+        + Tile()
+        {abstract} + draw()
+        + getBox()
+        + getPosition()
+        + isDisposable()
+        {abstract} + onEnter()
+        {abstract} + onExit()
+        {abstract} + onTile()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.TileBuilder {
+        + buildCoin()
+        + buildGlueTile()
+        + buildInvTile()
+        + buildLavaTile()
+        + buildObstacle()
+        + buildRegularTile()
+        + buildSpeedTile()
+        + buildTeleportTile()
+        + buildWall()
+    }
+  }
+  
+
+  namespace game.tiles {
+    class game.tiles.Wall {
+        + Wall()
+        + draw()
+        + onEnter()
+        + onExit()
+        + onTile()
+    }
+  }
+  
+
+  game.tiles.Coin -up-|> game.tiles.Tile
+  game.tiles.Coin o-- engine.Texture : texture
+  game.tiles.GlueTile -up-|> game.tiles.Tile
+  game.tiles.GlueTile o-- engine.Texture : texture
+  game.tiles.HealthTile -up-|> game.tiles.Tile
+  game.tiles.HealthTile o-- engine.Texture : texture
+  game.tiles.InvincibilityTile -up-|> game.tiles.Tile
+  game.tiles.InvincibilityTile o-- engine.Texture : texture
+  game.tiles.LavaTile -up-|> game.tiles.Tile
+  game.tiles.LavaTile o-- engine.Texture : texture
+  game.tiles.Obstacle -up-|> game.tiles.Tile
+  game.tiles.Obstacle o-- engine.Texture : texture
+  game.tiles.RegularTile -up-|> game.tiles.Tile
+  game.tiles.RegularTile o-- engine.Texture : texture
+  game.tiles.SwiftTile -up-|> game.tiles.Tile
+  game.tiles.SwiftTile o-- engine.Texture : texture
+  game.tiles.TeleportTile -up-|> game.tiles.Tile
+  game.tiles.TeleportTile o-- game.level.Vec2 : exit
+  game.tiles.TeleportTile o-- engine.Texture : texture
+  game.tiles.Tile .up.|> game.level.Drawable
+  game.tiles.Tile o-- game.level.Vec2 : box
+  game.tiles.Tile o-- game.level.Vec2 : position
+  game.tiles.Wall -up-|> game.tiles.Tile
+  game.tiles.Wall o-- engine.Texture : texture
+
+
+@enduml

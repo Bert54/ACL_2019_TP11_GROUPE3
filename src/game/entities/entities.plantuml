@@ -1,0 +1,228 @@
+@startuml
+
+title __ENTITIES's Class Diagram__\n
+
+  namespace game.entities {
+    class game.entities.EntityBuilder {
+        + EntityBuilder()
+        + buildHero()
+        + buildMonster()
+        + buildMonsterHor()
+        + buildMonsterVer()
+    }
+  }
+  
+
+  namespace game.entities {
+    interface game.entities.EntityController {
+        {abstract} + onUpdate()
+    }
+  }
+  
+
+  namespace game.entities {
+    abstract class game.entities.GameEntity {
+        {static} + GLUEDIVIDESPEED : float
+        {static} + HEROMAXHEALTH : int
+        {static} + HITINVINCIBILITYFRAMES : int
+        {static} + SWIFTSPEEDMODIFIER : float
+        + onSpecialTile : boolean
+        # disposable : boolean
+        # health : int
+        # invincibilityFrames : int
+        # isHit : boolean
+        # lose : boolean
+        # owned : List<GameEntity>
+        # previousHealth : int
+        # slowedFrames : int
+        # speedFrames : int
+        # win : boolean
+        + GameEntity()
+        + addSubEntity()
+        + applyMovement()
+        + cancelMovement()
+        {abstract} + collectCoin()
+        {abstract} + draw()
+        + getBox()
+        + getController()
+        + getDirection()
+        {static} + getHEALTHMAX()
+        + getHealth()
+        + getInvincibilityFrames()
+        + getNextPosition()
+        + getPosition()
+        + isDisposable()
+        + isLose()
+        + isProjectile()
+        + isWin()
+        + move()
+        + moveTo()
+        + onHit()
+        + setController()
+        + setDisposable()
+        + setHealth()
+        + setInvincibilityFrames()
+        + setIsHit()
+        + setOnSpecialTile()
+        + setPreviousHealth()
+        + setSlowedFrames()
+        + setSpeedFrames()
+        {abstract} + touchObstacle()
+        {abstract} + update()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.Hero {
+        {static} + LEFT : int
+        {static} + RIGHT : int
+        {static} + direction : int
+        - textureArr : Texture[]
+        + Hero()
+        + applyMovement()
+        + collectCoin()
+        + draw()
+        + move()
+        + touchObstacle()
+        + update()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.HeroController {
+        + HeroController()
+        + onUpdate()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.Monster {
+        + Monster()
+        + collectCoin()
+        + draw()
+        + onHit()
+        + touchObstacle()
+        + update()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.MonsterDefaultController {
+        - rng : Random
+        + MonsterDefaultController()
+        + onUpdate()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.MonsterHorController {
+        - direction : int
+        - rng : Random
+        + MonsterHorController()
+        + iverseDirection()
+        + onUpdate()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.MonsterHorizental {
+        + MonsterHorizental()
+        + collectCoin()
+        + draw()
+        + onHit()
+        + touchObstacle()
+        + update()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.MonsterVerController {
+        - direction : int
+        - rng : Random
+        + MonsterVerController()
+        + inverseDirection()
+        + onUpdate()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.MonsterVertical {
+        + MonsterVertical()
+        + collectCoin()
+        + draw()
+        + onHit()
+        + touchObstacle()
+        + update()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.Projectile {
+        - lifetime : long
+        - spawnTime : long
+        + Projectile()
+        + collectCoin()
+        + draw()
+        + isProjectile()
+        + moveProjectile()
+        + onHit()
+        + touchObstacle()
+        + update()
+    }
+  }
+  
+
+  namespace game.entities {
+    class game.entities.ProjectileController {
+        + ProjectileController()
+        + onUpdate()
+    }
+  }
+  
+
+  game.entities.EntityBuilder o-- model.WorldController : controller
+  game.entities.EntityBuilder o-- game.level.Maze : maze
+  game.entities.GameEntity .up.|> game.level.Drawable
+  game.entities.GameEntity o-- game.level.Vec2 : box
+  game.entities.GameEntity o-- game.entities.EntityController : controller
+  game.entities.GameEntity o-- game.level.Vec2 : direction
+  game.entities.GameEntity o-- game.level.Vec2 : nextPosition
+  game.entities.GameEntity o-- game.level.Vec2 : position
+  game.entities.Hero -up-|> game.entities.GameEntity
+  game.entities.Hero o-- game.level.Camera : camera
+  game.entities.HeroController .up.|> game.entities.EntityController
+  game.entities.HeroController o-- model.WorldController : controller
+  game.entities.HeroController o-- game.entities.Hero : hero
+  game.entities.HeroController o-- game.level.Maze : maze
+  game.entities.Monster -up-|> game.entities.GameEntity
+  game.entities.Monster o-- engine.Texture : texture
+  game.entities.MonsterDefaultController .up.|> game.entities.EntityController
+  game.entities.MonsterDefaultController o-- game.entities.Monster : monster
+  game.entities.MonsterHorController .up.|> game.entities.EntityController
+  game.entities.MonsterHorController o-- game.level.Vec2 : deplacement
+  game.entities.MonsterHorController o-- game.entities.MonsterHorizental : monsterHorizental
+  game.entities.MonsterHorizental -up-|> game.entities.GameEntity
+  game.entities.MonsterHorizental o-- engine.Texture : texture
+  game.entities.MonsterVerController .up.|> game.entities.EntityController
+  game.entities.MonsterVerController o-- game.level.Vec2 : deplacement
+  game.entities.MonsterVerController o-- game.entities.MonsterVertical : monsterVertical
+  game.entities.MonsterVertical -up-|> game.entities.GameEntity
+  game.entities.MonsterVertical o-- engine.Texture : texture
+  game.entities.Projectile -up-|> game.entities.GameEntity
+  game.entities.Projectile o-- game.level.Vec2 : direction
+  game.entities.Projectile o-- game.entities.GameEntity : owner
+  game.entities.Projectile o-- engine.Texture : texture
+  game.entities.ProjectileController .up.|> game.entities.EntityController
+  game.entities.ProjectileController o-- game.entities.Projectile : projectile
+
+
+@enduml

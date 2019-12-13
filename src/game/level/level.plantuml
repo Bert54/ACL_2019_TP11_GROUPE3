@@ -1,0 +1,114 @@
+@startuml
+
+title __LEVEL's Class Diagram__\n
+
+  namespace game.level {
+    class game.level.Background {
+        + Background()
+        + draw()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.Button {
+        - text : String
+        + Button()
+        + draw()
+        + getBox()
+        + setButton()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.Camera {
+        + Camera()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.CollisionResolver {
+        + CollisionResolver()
+        + resolve()
+        - collision()
+        - collision()
+        - noCollision()
+    }
+  }
+  
+
+  namespace game.level {
+    interface game.level.Drawable {
+        {abstract} + draw()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.HealthBar {
+        - healthBarWidth : int
+        - height : int
+        - text : String
+        - width : int
+        + HealthBar()
+        + draw()
+        + getWidth()
+        + setHealthBarWidth()
+        + setText()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.Maze {
+        - entities : List<GameEntity>
+        - pending : List<GameEntity>
+        - tiles : List<Tile>
+        + Maze()
+        + cleanup()
+        + getEntities()
+        + getTiles()
+        + spawnProjectile()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.TextureFactory {
+        {static} - textures : Map<String, Texture>
+        {static} + get()
+        ~ TextureFactory()
+    }
+  }
+  
+
+  namespace game.level {
+    class game.level.Vec2 {
+        + x : int
+        + y : int
+        + Vec2()
+        + Vec2()
+        + Vec2()
+        + normalize()
+    }
+  }
+  
+
+  game.level.Background .up.|> game.level.Drawable
+  game.level.Background o-- game.level.Vec2 : box
+  game.level.Background o-- engine.Texture : texture
+  game.level.Button .up.|> game.level.Drawable
+  game.level.Button -up-|> javax.swing.JPanel
+  game.level.Button o-- game.level.Vec2 : box
+  game.level.Button o-- game.level.Vec2 : position
+  game.level.Camera o-- game.level.Vec2 : position
+  game.level.Camera o-- game.level.Vec2 : scissor
+  game.level.HealthBar .up.|> game.level.Drawable
+  game.level.Maze o-- game.entities.EntityBuilder : builder
+  game.level.Maze o-- model.WorldController : controller
+  game.level.Maze o-- game.tiles.TileBuilder : tileBuilder
+
+
+@enduml
