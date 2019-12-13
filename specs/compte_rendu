@@ -45,3 +45,10 @@ Décisions pour le Sprint 4 :
     ajouter système save / load
     ajouter des objectifs secondaires
     faire plus de tests
+
+Sprint 4 retrospective :
+Le partage du travail s'est cette fois-ci bien déroulé, tout a été implémenté sauf la fonction de
+sauvegarde/chargement à cause de raisons techniques (notre architecture ne se prette pas à
+l'enregistrement des données). Il demeure tout de même quelques bugs, comme les projectiles
+ne partant pas comme il faut sans avoir fait un premier déplacement, ou les écran de Game Over et
+de Victoire ne s'affichant pas.
