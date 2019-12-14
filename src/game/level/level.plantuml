@@ -63,9 +63,6 @@ title __LEVEL's Class Diagram__\n
 
   namespace game.level {
     class game.level.Maze {
-        - entities : List<GameEntity>
-        - pending : List<GameEntity>
-        - tiles : List<Tile>
         + Maze()
         + cleanup()
         + getEntities()
@@ -106,6 +103,9 @@ title __LEVEL's Class Diagram__\n
   game.level.Camera o-- game.level.Vec2 : position
   game.level.Camera o-- game.level.Vec2 : scissor
   game.level.HealthBar .up.|> game.level.Drawable
+  game.level.Maze --"*" game.entities.GameEntity : entities
+  game.level.Maze --"*" game.entities.GameEntity : pending
+  game.level.Maze --"*" game.entities.Tile : tiles
   game.level.Maze o-- game.entities.EntityBuilder : builder
   game.level.Maze o-- model.WorldController : controller
   game.level.Maze o-- game.tiles.TileBuilder : tileBuilder
